@@ -19,7 +19,7 @@ I love exploring these questions through `robotics`, `human-computer interaction
 
 ## 🎬 Filmmaking & Visual Storytelling
 
-I work mostly in the camera department 🎥, as `Director of Photography`, `Assistant Camera`, `Gaffer`, crafting emotionally resonant stories. My past works include promotional content for Cornell’s Performing & Media Arts and short films selected for prestigious festivals and .
+I work mostly in the camera department 🎥, as `Director of Photography`, `Assistant Camera`, `Gaffer`, crafting emotionally resonant stories. My past works include promotional content for Cornell’s Performing & Media Arts and short films selected for prestigious festivals.
 
 I'm also a dedicated film nerd—you’ll find me at indie theaters around NYC (Metrograph, IFC Center, Film Forum, Film at Lincoln Center). Follow my film adventures on [Letterboxd](https://letterboxd.com/JieC_x/)👀.
 
@@ -29,7 +29,7 @@ I'm also a dedicated film nerd—you’ll find me at indie theaters around NYC (
 ---
 
 Always looking for creative intersections of technology and storytelling—whether in research, engineering, or filmmaking.  
-
+<br/>
 Got a cool project? Let’s connect! Drop me a message via email or Instagram 😊.
 
 

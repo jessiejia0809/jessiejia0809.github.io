@@ -7,7 +7,7 @@ collection: portfolio
 ### Milkshake Kiss (1st Assistant Camera)
 
 **About the Project:**  
-*Milkshake Kiss* is currently in psot-production with a planned release in May 2025.
+*Milkshake Kiss* is currently in post-production with a planned release in May 2025.
 
 **Details:**
 - **Role:** 1st Assistant Camera (1st AC)

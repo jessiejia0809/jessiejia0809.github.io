@@ -1,10 +1,9 @@
 ---
 title: "The Interrogation - Director of Photography"
-excerpt: "A psychological journey through trust, loyalty, and hidden secrets. \\Screened at Cornell PMA Student Film Screening 2024 Fall<br/><img src='/images/interrogation.png' width='500' height='auto'>"
+excerpt: "A psychological journey through trust, loyalty, and hidden secrets. <br/>Screened at Cornell PMA Student Film Screening 2024 Fall<br/><img src='/images/interrogation.png' width='500' height='auto'>"
 collection: portfolio
 ---
 
-**Social Media:**
 **About the Film:**  
 After receiving a mysterious call about her missing husband, Reina Hawkins is lured into an unsettling interrogation by the enigmatic Officer Webb. As the psychological game deepens, Reina uncovers horrifying secrets that push her to question reality, loyalty, and her own breaking point.
 
