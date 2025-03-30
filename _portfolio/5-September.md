@@ -13,5 +13,4 @@ collection: portfolio
 - **Role:** Gaffer/Sound
 - **Screening:** Cornell PMA Student Film Screening 2024 Fall
 - **Equipment:** Shot on Canon C300
-- **Status:** Submitted to festivals; Public release this week
 - **Equipment:** Shot on Blackmagic Pyxis

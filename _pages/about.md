@@ -13,7 +13,7 @@ From Guangzhou 🇨🇳, now based in Princeton, NJ and Ithaca, NY 🇺🇸 .
 
 ## 🤖 Computer Science: Robotics & Human-AI Interaction
 
-Watching *HER* sparked my curiosity about how AI shapes daily life—from smart homes to emotional companions.  <img src='/images/her.png'> <br/>
+Watching *HER* sparked my curiosity about how AI shapes daily life—from smart homes to emotional companions.  <img src='/images/her.png'> <br/> <br/>
 
 I love exploring these questions through `robotics`, `human-computer interaction (HCI)`, and creative computing. My project ranges from Sim2Real Robot learning, and building LLM-powered tools for cyberbullying education.
 

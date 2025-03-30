@@ -11,7 +11,6 @@ Written and directed by award-winning student filmmaker Katherine Lynn-Rose, *To
 
 **Details:**
 - **Role:** 1st Assistant Camera (1st AC)
-- **Status:** In post-production.
 - **Equipment:** Shot on Blackmagic Pyxis
 - **Promotional Material:** [Official Instagram](https://www.instagram.com/topofmyschoolfilm/)
 - **More Info:** [Indiegogo - Descriptions and Logline](https://www.indiegogo.com/projects/top-of-my-school-cornell-university-thesis-film#/?fbclid=PAZXh0bgNhZW0CMTEAAaYa2KvMn0LsRnq9JseibIj8qI0hzKcQoQhqkU2wJZWOcYET4KLsc7cnCBs_aem_WyjiBmCCU5HzYYFzF-PQJA)
