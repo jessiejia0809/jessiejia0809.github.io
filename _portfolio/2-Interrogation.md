@@ -1,6 +1,6 @@
 ---
 title: "The Interrogation - Director of Photography"
-excerpt: "Screened at Cornell PMA Student Film Screening 2024 Fall; a psychological journey through trust, loyalty, and hidden secrets. <br/><img src='/images/interrogation.png'>"
+excerpt: "A psychological journey through trust, loyalty, and hidden secrets. \\Screened at Cornell PMA Student Film Screening 2024 Fall<br/><img src='/images/interrogation.png'>"
 collection: portfolio
 ---
 
