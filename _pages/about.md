@@ -24,10 +24,12 @@ I work mostly in the camera department 🎥, as `Director of Photography`, `Assi
 I'm also a dedicated film nerd—you’ll find me at indie theaters around NYC (Metrograph, IFC Center, Film Forum, Film at Lincoln Center). Follow my film adventures on [Letterboxd](https://letterboxd.com/JieC_x/)👀.
 
 ✨ Spoiler Alert: I’ve booked my ticket for Cannes 2025 already!
+<br/>
 
 ---
 
 Always looking for creative intersections of technology and storytelling—whether in research, engineering, or filmmaking.  
+
 Got a cool project? Let’s connect! Drop me a message via email or Instagram 😊.
 
 

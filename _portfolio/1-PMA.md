@@ -1,6 +1,7 @@
 ---
 title: "Cornell PMA communications Assistant"
-excerpt: "Editing trailers, archival footage, and promotional content for PMA’s Instagram & YouTube. <br/> Co-host Cornell PMA’s bi-monthly podcasts.<br/><img src='/images/PMA.png'>"
+excerpt: "Editing trailers, archival footage, and promotional content for PMA’s Instagram & YouTube. <br/> Co-host Cornell PMA’s bi-monthly podcasts.<br/><br/><img src='/images/PMA.png' width='500' height='auto'>"
+
 collection: portfolio
 ---
 
