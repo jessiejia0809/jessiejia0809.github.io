@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "👋🏻Hi, I'm Jessie — an AI researcher and filmmaker."
+title: "👋🏻Hi, I'm Jessie, an AI researcher and filmmaker."
 author_profile: true
 redirect_from: 
   - /about/
