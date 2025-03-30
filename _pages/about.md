@@ -1,20 +1,21 @@
 ---
 permalink: /
-title: "👋🏻Hi, I'm Jessie \\ — an AI researcher and filmmaker."
+title: "👋🏻Hi, I'm Jessie — an AI researcher and filmmaker."
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-I'm 贾惠妤 Jessie (Huiyu) Jia!  
+
+I'm Jessie (Huiyu) Jia 贾惠妤!  
 Computer Science undergrad @ Cornell, minoring in AI & Film.  
 From Guangzhou 🇨🇳, now bouncing between Princeton, NJ and Ithaca, NY 🇺🇸 .
 
 ## 🤖 Computer Science: Robotics & Human-AI Interaction
 
-Watching *HER* sparked my curiosity about how AI shapes daily life—from smart homes to emotional companions.  
-<br/><img src='/images/her.png'>
+Watching *HER* sparked my curiosity about how AI shapes daily life—from smart homes to emotional companions.  <br/><img src='/images/her.png'>
+
 I love exploring these questions through `robotics`, `human-computer interaction (HCI)`, and creative computing. My project ranges from Sim2Real Robot learning, and building LLM-powered tools for cyberbullying education.
 
 ## 🎬 Filmmaking & Visual Storytelling
