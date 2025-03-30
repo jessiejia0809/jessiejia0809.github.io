@@ -1,6 +1,6 @@
 ---
 title: "September - Gaffer/Sound"
-excerpt: "A heartfelt exploration of friendship and growing up, set against the iconic Cornell University backdrop.<br/><img src='/images/500x300.png'>"
+excerpt: "A heartfelt exploration of friendship and growing up, set against the iconic Cornell University backdrop."
 collection: portfolio
 ---
 

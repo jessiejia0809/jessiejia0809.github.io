@@ -1,6 +1,6 @@
 ---
 title: "Top of My School - 1st Assistant Camera"
-excerpt: "A coming-of-age musical short film about ambition, sacrifice, and the price of validation. Top of My School follows Bree, a high-achieving senior torn between her immigrant parents' expectations and her hunger for recognition—until a quiet classmate’s challenge sends her down a dark path of obsession and sabotage.<br/><img src='/images/TOMS.png'>"
+excerpt: "A coming-of-age musical short film about ambition, sacrifice, and the price of validation. Top of My School follows Bree, a high-achieving senior torn between her immigrant parents' expectations and her hunger for recognition—until a quiet classmate’s challenge sends her down a dark path of obsession and sabotage."
 collection: portfolio
 ---
 
