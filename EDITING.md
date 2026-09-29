@@ -25,7 +25,6 @@ Open the local address printed by the preview. Leave it running while you edit. 
 | Research introduction and group labels | `content/research.yml` |
 | Each research project | `content/research/*.md` |
 | Each film, statement and gallery | `content/films/*.md` |
-| Favorite films | `content/influences.yml` |
 | Games | `content/games.yml` |
 | Crew credits | `content/filmography.yml` |
 
@@ -45,10 +44,14 @@ For the entrance, edit `content/home.yml`:
 image: opening.webp
 alt: An open doorway in a film I admire.
 credit: A Time to Live and a Time to Die
+director: Hou Hsiao-hsien
+year: 1985
 focalPoint: 50% 50%
 ```
 
-The focal point controls desktop cropping. On mobile the whole frame is shown. The credit appears on About, leaving the entrance minimal.
+The focal point controls desktop cropping. On mobile the whole frame is shown. The film title, director, and year appear discreetly at the bottom of the entrance.
+
+The `background` setting in `content/about.md` and `content/research.yml` selects each page’s faint film frame. Use `**bold text**` in the biography for green highlights. The Cornell photograph is `/images/cornell.webp` in `public/images/`; replace that file or edit its image line in the biography. Crew credits in `content/filmography.yml` accept an optional `url` for the work’s link and `director` for its credit.
 
 ## Add, hide and reorder
 

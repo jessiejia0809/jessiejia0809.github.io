@@ -1,10 +1,12 @@
 ---
 import '../styles/site.css';
+import Photo from '../components/Photo.astro';
 import { site } from '../lib/content';
-const {title,theme='plain',home=false}=Astro.props;
+const {title,theme='plain',home=false,background}=Astro.props;
 const links=[['About me','/about/'],['Research','/research/'],['Film','/film/']];
 ---
 <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title} · {site.name}</title><meta name="description" content={site.description}/><link rel="canonical" href={new URL(Astro.url.pathname,Astro.site)}/><meta name="google-site-verification" content={site.googleVerification}/><link rel="icon" href="/favicon.svg"/><meta property="og:title" content={`${title} · ${site.name}`}/><meta property="og:description" content={site.description}/><meta property="og:type" content="website"/></head><body class={theme}>
+{background && <Photo name={background} alt="" class="page-backdrop" aria-hidden="true" eager/>}
 {!home && <><a class="skip" href="#main">Skip to content</a><header class="navigation"><a class="name" href="/">{site.name}</a><nav aria-label="Main navigation">{links.map(([label,url])=><a href={url} aria-current={Astro.url.pathname===url?'page':undefined}>{label}</a>)}</nav></header></>}
 <slot/>
 {!home && <footer><a href={`mailto:${site.email}`}>{site.email}</a><a href="/">Home</a></footer>}
