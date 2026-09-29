@@ -1,0 +1,8 @@
+---
+import {getEntry,render} from 'astro:content';
+import Page from '../layouts/Page.astro';import Photo from '../components/Photo.astro';
+import {site,games,influences,home} from '../lib/content';
+const about=await getEntry('about','about'); if(!about)throw Error('Missing content/about.md');
+const {Content}=await render(about);
+---
+<Page title={about.data.title}><main id="main" class="about-page"><h1>{about.data.title}</h1><div class="about-copy prose"><Photo name={about.data.portrait} alt={about.data.portraitAlt} class="portrait"/><Content/><p class="social"><a href={`mailto:${site.email}`}>Email</a>{site.social.map(s=><a href={s.url}>{s.label}</a>)}</p></div><section class="small-section"><h2>{games.title}</h2>{games.items.map(g=><p>{g.url?<a href={g.url}>{g.title}</a>:g.title} — {g.description}</p>)}</section><details class="influences"><summary>{influences.title}</summary>{influences.items.filter(i=>i.visible).map(i=><figure><Photo name={i.image} alt={i.alt}/><figcaption>{i.caption}</figcaption></figure>)}<p class="muted">The opening image is from <cite>{home.credit}</cite>. These frames are from films I admire.</p></details></main></Page>

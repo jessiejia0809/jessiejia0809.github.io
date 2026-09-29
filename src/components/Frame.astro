@@ -1,0 +1,5 @@
+---
+import Photo from './Photo.astro';import {resolveImage} from '../lib/images';
+const {frame,title}=Astro.props;const caption=frame.caption||`${title} — ${frame.alt}`;
+---
+<a class="gallery-frame" href={resolveImage(frame.image).src} data-image data-caption={caption} aria-label={`Enlarge: ${caption}`}><Photo name={frame.image} alt={frame.alt}/></a>
