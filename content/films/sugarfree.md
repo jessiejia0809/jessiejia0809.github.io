@@ -8,18 +8,27 @@ roles:
   - "Director"
   - "Producer"
 logline: "A former ballerina, a fractured memory. Between performance and emptiness."
+supportingGrid: true
 gallery:
-  - image: "sugarfree.webp"
-    alt: "A ballerina in stage light."
-    caption: "Sugarfree — A ballerina in stage light."
+  - image: "sugarfree-selected.webp"
+    alt: "A woman raises her arms in a golden field at sunset."
+    caption: "Sugarfree — A woman raises her arms in a golden field at sunset."
     visible: true
-  - image: "sugarfree-stage.webp"
-    alt: "A dancer under the stage lights."
-    caption: "Sugarfree — A dancer under the stage lights."
+  - image: "sugarfree1-selected.webp"
+    alt: "A woman eats fries in a bright atrium."
+    caption: "Sugarfree — A woman eats fries in a bright atrium."
     visible: true
-  - image: "sugarfree-field.webp"
-    alt: "A figure in a field at sunset."
-    caption: "Sugarfree — A figure in a field at sunset."
+  - image: "sugarfree2-selected.webp"
+    alt: "A ballerina performs beneath three stage lights."
+    caption: "Sugarfree — A ballerina performs beneath three stage lights."
+    visible: true
+  - image: "sugarfree3-selected.webp"
+    alt: "A dancer seen from behind with her arms outstretched."
+    caption: "Sugarfree — A dancer seen from behind with her arms outstretched."
+    visible: true
+  - image: "sugarfree4-selected.webp"
+    alt: "Two ballerinas perform on a dark stage."
+    caption: "Sugarfree — Two ballerinas perform on a dark stage."
     visible: true
 ---
 
