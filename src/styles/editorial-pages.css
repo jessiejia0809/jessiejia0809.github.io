@@ -1,0 +1,16 @@
+/* Let each figure occupy its own uninterrupted side of the page. */
+body:has(.page-backdrop){background:#111a19;color:#e3e7df;--muted:#adb9ac;--rule:#526057}
+body:has(.page-backdrop) .page-backdrop{width:48%;height:100svh;opacity:1;object-position:38% center}
+body:has(.page-backdrop) .navigation{max-width:none;padding:28px 4%;position:relative;z-index:2;background:linear-gradient(#101817b3,transparent);color:#edf0e7}
+body:has(.page-backdrop) .about-page,body:has(.page-backdrop) .research-page{position:relative;max-width:none;width:52%;margin:35px 0 70px 48%;padding:36px clamp(28px,4vw,72px);min-height:72svh}
+body:has(.page-backdrop) .about-page{background:#14201fe8}.about-page .about-copy strong{color:#b7cc9f}
+body:has(.page-backdrop) .portrait{width:130px;margin-left:24px}
+body:has(.page-backdrop) .research-page{background:#f5f5eff5;color:#303b34;--muted:#647164;--rule:#cbd2c6}
+body:has(.page-backdrop) .research-page .publication{grid-template-columns:1fr;gap:16px}.research-page .figure-link{max-width:330px}
+body:has(.page-backdrop) .page-background-credit{position:fixed;bottom:30px;left:4%;width:39%;padding:0;margin:0;text-align:left;color:#f3f3e9;font-size:11px;line-height:1.65;text-shadow:0 1px 7px #000}
+body:has(.page-backdrop) .page-background-credit span{display:block;margin:0;font-size:10px;opacity:.8}
+body:has(.page-backdrop) footer{margin-left:48%;max-width:none;padding:24px 4%;font-size:11px}
+@media(min-width:1600px){body:has(.page-backdrop) .research-page .publication{grid-template-columns:210px 1fr}}
+@media(max-width:800px){body:has(.page-backdrop) .page-backdrop{position:absolute;width:100%;height:58svh;object-position:38% 40%}body:has(.page-backdrop) .navigation{padding:24px;gap:15px}body:has(.page-backdrop) .navigation nav{gap:18px}body:has(.page-backdrop) .about-page,body:has(.page-backdrop) .research-page{width:auto;margin:44svh 16px 36px;padding:30px 24px;min-height:0}body:has(.page-backdrop) .page-background-credit{position:absolute;top:44svh;bottom:auto;left:24px;width:85%;font-size:10px}body:has(.page-backdrop) footer{margin:0 24px;padding:24px 0}body:has(.page-backdrop) .portrait{width:115px;margin-left:20px}}
+
+.page-background-credit cite{font-style:normal}

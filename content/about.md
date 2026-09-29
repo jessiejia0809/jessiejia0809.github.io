@@ -2,6 +2,9 @@
 title: "About me"
 portrait: "portrait.webp"
 background: "burning-one.webp"
+backgroundCredit: "Burning"
+backgroundDirector: "Lee Chang-dong"
+backgroundYear: 2018
 portraitAlt: "Jessie beside a balcony overlooking a courtyard."
 ---
 

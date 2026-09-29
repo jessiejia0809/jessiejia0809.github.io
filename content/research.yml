@@ -1,4 +1,7 @@
 background: "yiyi.webp"
+backgroundCredit: "Yi Yi"
+backgroundDirector: "Edward Yang"
+backgroundYear: 2000
 title: "Research"
 intro: "I study how AI changes creative practice, with an emphasis on human agency, craftsmanship, and expression. My work spans human–AI interaction, multi-agent systems, and robot learning."
 affiliation: "Cornell University · B.S. Computer Science, 2026"
