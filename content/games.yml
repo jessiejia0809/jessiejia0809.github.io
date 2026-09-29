@@ -1,0 +1,9 @@
+title: "Other making"
+items:
+  -
+    title: "Sweet Sweet Betrayal"
+    description: "A multiplayer mobile party runner built with C++ / CUGL."
+    url: "https://github.com/caitlynjin/sweet-sweet-betrayal"
+  -
+    title: "S.A.M.S.A."
+    description: "A 2D escort platformer built in Java / LibGDX."

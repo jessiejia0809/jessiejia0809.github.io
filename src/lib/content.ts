@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import YAML from 'yaml';
+import { z } from 'astro:content';
+import siteRaw from "../../content/site.yml?raw";
+import homeRaw from "../../content/home.yml?raw";
+import influencesRaw from "../../content/influences.yml?raw";
+import gamesRaw from "../../content/games.yml?raw";
+import filmographyRaw from "../../content/filmography.yml?raw";
+import researchRaw from "../../content/research.yml?raw";
+const rawFiles:Record<string,string>={"site.yml":siteRaw,"home.yml":homeRaw,"influences.yml":influencesRaw,"games.yml":gamesRaw,"filmography.yml":filmographyRaw,"research.yml":researchRaw};
+const text=z.string().min(1);
+const http=z.string().url();
+function read<T>(file:string,schema:z.ZodType<T>):T { return schema.parse(YAML.parse(rawFiles[file])); }
+export const site=read('site.yml',z.object({name:text,email:z.string().email(),description:text,googleVerification:z.string().optional(),cv:z.string().nullable(),social:z.array(z.object({label:text,url:http}))}));
+export const home=read('home.yml',z.object({image:text,alt:text,credit:text,focalPoint:z.string().regex(/^\d{1,3}% \d{1,3}%$/)}));
+export const influences=read('influences.yml',z.object({title:text,items:z.array(z.object({image:text,alt:text,caption:text,visible:z.boolean()}))}));
+export const games=read('games.yml',z.object({title:text,items:z.array(z.object({title:text,description:text,url:http.optional()}))}));
+export const filmography=read('filmography.yml',z.object({title:text,items:z.array(z.object({title:text,role:text,director:z.string().nullable().optional()}))}));
+export const research=read('research.yml',z.object({title:text,intro:text,affiliation:text,groups:z.array(z.object({id:text,title:text,affiliation:text}))}));
+if(site.cv && !fs.existsSync(path.resolve('public',site.cv.replace(/^\//,''))))throw Error(`CV does not exist: ${site.cv}`);

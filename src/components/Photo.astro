@@ -1,0 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import { resolveImage } from '../lib/images';
+const {name,alt,eager=false,...rest}=Astro.props;
+const source=resolveImage(name);
+const widths=[480,960,1600,2000].filter(w=>w<source.width).concat(source.width);
+---
+<Image src={source} alt={alt} widths={widths} sizes="(max-width: 650px) 100vw, 90vw" format="webp" loading={eager?'eager':'lazy'} fetchpriority={eager?'high':'auto'} {...rest}/>

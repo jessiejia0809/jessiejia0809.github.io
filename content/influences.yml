@@ -1,0 +1,17 @@
+title: "Films I return to"
+items:
+  -
+    image: "yiyi.webp"
+    alt: "A girl in silhouette, from Yi Yi."
+    caption: "Yi Yi"
+    visible: true
+  -
+    image: "burning-one.webp"
+    alt: "A man in profile at dusk, from Burning."
+    caption: "Burning"
+    visible: true
+  -
+    image: "burning-two.webp"
+    alt: "Raised hands against a sunset, from Burning."
+    caption: "Burning"
+    visible: true
