@@ -16,6 +16,6 @@ export const site=read('site.yml',z.object({name:text,email:z.string().email(),d
 export const home=read('home.yml',z.object({image:text,alt:text,credit:text,director:text,year:z.number().int(),focalPoint:z.string().regex(/^\d{1,3}% \d{1,3}%$/)}));
 export const influences=read('influences.yml',z.object({title:text,items:z.array(z.object({image:text,alt:text,caption:text,visible:z.boolean()}))}));
 export const games=read('games.yml',z.object({title:text,items:z.array(z.object({title:text,description:text,url:http.optional()}))}));
-export const filmography=read('filmography.yml',z.object({title:text,items:z.array(z.object({title:text,role:text,director:z.string().nullable().optional(),url:http.optional()}))}));
+export const filmography=read('filmography.yml',z.object({title:text,reels:z.array(z.object({videoId:z.string().regex(/^[A-Za-z0-9_-]{11}$/),title:text})).default([]),items:z.array(z.object({title:text,role:text,director:z.string().nullable().optional(),url:http.optional()}))}));
 export const research=read('research.yml',z.object({title:text,intro:text,affiliation:text,background:text.optional(),groups:z.array(z.object({id:text,title:text,affiliation:text}))}));
 if(site.cv && !fs.existsSync(path.resolve('public',site.cv.replace(/^\//,''))))throw Error(`CV does not exist: ${site.cv}`);
