@@ -9,7 +9,7 @@ const person={
   alternateName:['Jessie Jia','Huiyu Jia'],
   url:new URL('/about/',Astro.site).href,
   description:site.description,
-  // Add verified Google Scholar and LinkedIn URLs here when available.
+  // Add a verified LinkedIn URL here when available.
   sameAs:['https://github.com/jessiejia0809',...site.social.map(({url})=>url)]
 };
 const structuredData=profile ? {

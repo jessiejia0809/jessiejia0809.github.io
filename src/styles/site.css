@@ -15,3 +15,5 @@ body{position:relative;isolation:isolate}.page-backdrop{position:fixed;inset:0;w
 
 .navigation{justify-content:flex-end}
 .citation strong{font-weight:700}
+
+.scholar-link{display:inline-flex;align-items:center;gap:5px;margin-left:14px;white-space:nowrap}.scholar-link svg{flex:none;vertical-align:middle}
