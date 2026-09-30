@@ -10,7 +10,9 @@ backgroundYear: 2018
 
 <div class="eyebrow">About me</div>
 
-# I study how AI changes the way we make, imagine, and tell stories.
+# Jessie Huiyu Jia
+
+<p class="research-statement">I study how AI changes the way we make, imagine, and tell stories.</p>
 
 <p class="intro">I’m a researcher and filmmaker working at the intersection of human–AI interaction, creative practice, and emerging media.</p>
 
