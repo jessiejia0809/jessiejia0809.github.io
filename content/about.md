@@ -7,6 +7,7 @@ backgroundCredit: "Burning"
 backgroundDirector: "Lee Chang-dong"
 backgroundYear: 2018
 ---
+
 <div class="eyebrow">About me</div>
 
 # I study how AI changes the way we make, imagine, and tell stories.
