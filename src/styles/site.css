@@ -12,3 +12,6 @@ body{position:relative;isolation:isolate}.page-backdrop{position:fixed;inset:0;w
 
 .frame-pair.supporting-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(max-width:650px){.frame-pair.supporting-grid{gap:10px}.entrance-nav{gap:20px;padding-inline:14px;font-size:11px}}
+
+.navigation{justify-content:flex-end}
+.citation strong{font-weight:700}

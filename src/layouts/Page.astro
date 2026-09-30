@@ -9,7 +9,7 @@ const links=[['About me','/about/'],['Research','/research/'],['Film','/film/']]
 ---
 <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><Seo title={home?'Jessie 贾惠妤 | AI, HCI & Filmmaking':`${title} · ${site.name}`} profile={home} noindex={Astro.url.pathname==='/404.html'}/><link rel="icon" href="/favicon.svg"/></head><body class={theme}>
 {background && <Photo name={background} alt="" class="page-backdrop" aria-hidden="true" eager/>}
-{!home && <><a class="skip" href="#main">Skip to content</a><header class="navigation"><a class="name" href="/">{site.name}</a><nav aria-label="Main navigation">{links.map(([label,url])=><a href={url} aria-current={Astro.url.pathname===url?'page':undefined}>{label}</a>)}</nav></header></>}
+{!home && <><a class="skip" href="#main">Skip to content</a><header class="navigation"><nav aria-label="Main navigation">{links.map(([label,url])=><a href={url} aria-current={Astro.url.pathname===url?'page':undefined}>{label}</a>)}</nav></header></>}
 <slot/>
 {background && backgroundCredit && backgroundDirector && backgroundYear && <p class="page-background-credit"><cite>{backgroundCredit}</cite><span>Dir. {backgroundDirector} · {backgroundYear}</span></p>}
 {!home && <footer><a href={`mailto:${site.email}`}>{site.email}</a><a href="/">Home</a></footer>}
