@@ -14,7 +14,7 @@ backgroundYear: 2018
 
 <p class="research-statement">I study how AI changes the way we make, imagine, and tell stories.</p>
 
-<p class="intro">I’m Jessie Jia (Huiyu Jia, 贾惠妤), a researcher and filmmaker with a computer science background at Cornell University. I work at the intersection of human–AI interaction, creative practice, and emerging media.</p>
+<p class="intro">I’m a researcher and filmmaker with a computer science background at Cornell University. I work at the intersection of human–AI interaction, creative practice, and emerging media.</p>
 
 <blockquote><div class="quote-note">My favorite quote comes from a Q&amp;A for <em>Brokeback Mountain</em>:</div><p>“Don’t let emotions<br>go to waste.”</p><cite>— Ang Lee (also one of my fav directors!)</cite></blockquote>
 
