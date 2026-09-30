@@ -3,4 +3,4 @@ import Page from '../layouts/Page.astro';
 import Photo from '../components/Photo.astro';
 import {home} from '../lib/content';
 ---
-<Page title="Home" theme="entrance" home><Photo name={home.image} alt={home.alt} title={home.credit} class="entrance-frame" style={`object-position:${home.focalPoint}`} eager/><nav class="entrance-nav" aria-label="Main navigation"><a href="/about/">About me – Jessie 贾惠妤</a><a href="/research/">Research</a><a href="/film/">Film</a></nav><p class="entrance-credit"><cite>{home.credit}</cite><span>Dir. {home.director} · {home.year}</span></p></Page>
+<Page title="Home" theme="entrance" home><Photo name={home.image} alt={home.alt} title={home.credit} class="entrance-frame" style={`object-position:${home.focalPoint}`} eager/><nav class="entrance-nav" aria-label="Main navigation"><a href="/about/">About me</a><a href="/research/">Research</a><a href="/film/">Film</a></nav><p class="entrance-credit"><cite>{home.credit}</cite><span>Dir. {home.director} · {home.year}</span></p></Page>

@@ -10,7 +10,7 @@ backgroundYear: 2018
 
 <div class="eyebrow">About me</div>
 
-<h1 class="personal-name">Jessie <span lang="zh">贾惠妤</span></h1>
+<h1 class="signature-name" aria-label="贾惠妤 Huiyu Jia"><svg viewBox="0 0 306 154" aria-hidden="true"><image href="/name-lettering.png" width="916" height="286"/></svg><svg viewBox="594 99 322 187" aria-hidden="true"><image href="/name-lettering.png" width="916" height="286"/></svg></h1>
 
 <p class="research-statement">I study how AI changes the way we make, imagine, and tell stories.</p>
 
