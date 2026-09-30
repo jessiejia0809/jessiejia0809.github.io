@@ -5,10 +5,11 @@ const canonical=new URL(Astro.url.pathname,Astro.site);
 const person={
   '@type':'Person',
   '@id':new URL('/#person',Astro.site).href,
-  name:'Jessie 贾惠妤',
-  alternateName:['Jessie Jia','Huiyu Jia'],
+  name:site.name,
+  alternateName:['Huiyu Jia','贾惠妤','Jessie 贾惠妤'],
   url:new URL('/about/',Astro.site).href,
   description:site.description,
+  alumniOf:{'@type':'CollegeOrUniversity',name:'Cornell University',url:'https://www.cornell.edu/'},
   // Add a verified LinkedIn URL here when available.
   sameAs:['https://github.com/jessiejia0809',...site.social.map(({url})=>url)]
 };
