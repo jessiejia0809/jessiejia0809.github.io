@@ -93,3 +93,6 @@ You can also make these edits locally and push an edit branch. Do not commit `di
 A failed build does not replace the last deployed site. Read the error in the Actions build log; it should name the content field or image that needs attention. Revert the offending content commit or correct it, then rebuild.
 
 The old Jekyll version is preserved at `pre-cinematic-redesign-2026-09-29`. Restoring that version also requires changing Pages back to its previous legacy build from `master` at `/`; it cannot run through the new Astro workflow unchanged.
+
+## Personal photographs
+Edit `content/personal.md` for the About photo sections and games text, and `content/on-set.md` for Film’s behind-the-scenes captions. Their images live in `public/images/personal/`; replace those files to swap photographs.
