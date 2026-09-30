@@ -1,0 +1,33 @@
+---
+import {site} from '../lib/content';
+const {title,profile=false,noindex=false}=Astro.props;
+const canonical=new URL(Astro.url.pathname,Astro.site);
+const person={
+  '@type':'Person',
+  '@id':new URL('/#person',Astro.site).href,
+  name:'Jessie Huiyu Jia',
+  alternateName:['Jessie Jia','Huiyu Jia'],
+  url:new URL('/about/',Astro.site).href,
+  description:site.description,
+  // Add verified Google Scholar and LinkedIn URLs here when available.
+  sameAs:['https://github.com/jessiejia0809',...site.social.map(({url})=>url)]
+};
+const structuredData=profile ? {
+  '@context':'https://schema.org',
+  '@type':'ProfilePage',
+  '@id':`${canonical.href}#profile`,
+  url:canonical.href,
+  name:title,
+  mainEntity:person
+} : null;
+---
+<title>{title}</title>
+<meta name="description" content={site.description}/>
+<meta name="robots" content={noindex?'noindex, follow':'index, follow'}/>
+<link rel="canonical" href={canonical}/>
+{site.googleVerification && <meta name="google-site-verification" content={site.googleVerification}/>}
+<meta property="og:title" content={title}/>
+<meta property="og:description" content={site.description}/>
+<meta property="og:type" content={profile?'profile':'website'}/>
+<meta property="og:url" content={canonical}/>
+{structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g,'\\u003c')}/>}
