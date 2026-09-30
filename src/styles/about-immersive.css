@@ -5,3 +5,8 @@
 
 .research-statement{font:normal clamp(24px,2.6vw,38px)/1.35 Georgia,serif;letter-spacing:-.02em;margin:0 0 26px;max-width:570px}
 @media(max-width:600px){.research-statement{font-size:28px;max-width:340px}}
+
+.personal-name{font-family:"Snell Roundhand","Apple Chancery","URW Chancery L",cursive;font-size:clamp(40px,4.5vw,62px);line-height:1.3;letter-spacing:0;font-weight:400;margin-bottom:24px}
+.personal-name span{font-family:KaiTi,"Kaiti SC",STKaiti,"Noto Serif CJK SC",serif;font-size:.85em}
+blockquote p{font-family:"Snell Roundhand","Apple Chancery","URW Chancery L",cursive;font-size:clamp(44px,5vw,68px);line-height:1.22;letter-spacing:-.02em}
+@media(max-width:600px){.personal-name{font-size:40px}blockquote p{font-size:46px}}

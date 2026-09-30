@@ -8,5 +8,7 @@ body{position:relative;isolation:isolate}.page-backdrop{position:fixed;inset:0;w
 .about-copy strong{color:#486044;font-weight:600}.cornell-photo{float:left;width:145px;height:auto;margin:8px 25px 18px 0;border-radius:1px}.about-copy p:has(+ .cornell-photo){clear:right}.cornell-photo{clear:both}.education-end{clear:both}.filmography h2{font-size:13px;font-weight:400;border-top:1px solid #384032;padding-top:20px}.filmography a{text-underline-offset:4px;text-decoration-color:#64705d}
 @media(max-width:650px){.entrance-credit{left:24px;bottom:24px;font-size:10px}.cornell-photo{width:115px;margin-right:20px}.page-backdrop{object-position:55% center}}
 
-.entrance-name{position:absolute;top:78px;left:0;right:0;text-align:center;font:normal 18px/1.4 Georgia,serif;color:#f6f7ef;text-shadow:0 1px 7px #000}
 .frame-pair.three-column-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+.frame-pair.supporting-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:650px){.frame-pair.supporting-grid{gap:10px}.entrance-nav{gap:20px;padding-inline:14px;font-size:11px}}

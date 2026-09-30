@@ -8,3 +8,4 @@ body:has(.personal-notes){overflow-x:clip}
 body:has(.personal-notes) .shade{background:linear-gradient(90deg,#08131530,#08131544 25%,#081315b8 60%,#081315d6),linear-gradient(0deg,#08131530,transparent 65%,#0813154d)}
 body:has(.personal-notes) .scene{background-size:cover;background-position:35% center}
 @media(max-width:600px){body:has(.personal-notes) .scene{background-size:auto 100svh;background-position:39% center}body:has(.personal-notes) .shade{background:linear-gradient(0deg,#101b1dbb,#101b1dcc 45%,#101b1d55)}.personal-notes{padding-bottom:90px}.personal-notes~.film-credit{left:24px;bottom:18px;font-size:9px}}
+@media(max-width:600px){.personal-notes~.film-credit{position:relative;left:auto;bottom:auto;margin:0 27px 25px}}

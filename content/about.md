@@ -10,7 +10,7 @@ backgroundYear: 2018
 
 <div class="eyebrow">About me</div>
 
-# Jessie Huiyu Jia
+<h1 class="personal-name">Jessie <span lang="zh">贾惠妤</span></h1>
 
 <p class="research-statement">I study how AI changes the way we make, imagine, and tell stories.</p>
 
