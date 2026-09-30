@@ -8,6 +8,7 @@ roles:
   - "Director"
   - "Producer"
 logline: "A boy who always sees a crying zebra and a girl who needs to be seen."
+middleCount: 6
 gallery:
   -
     image: "zebra.webp"
@@ -15,14 +16,34 @@ gallery:
     caption: "Zebra — A figure beside the lake at sunset."
     visible: true
   -
-    image: "zebra-kitchen.webp"
-    alt: "Two figures in adjoining rooms."
-    caption: "Zebra — Two figures in adjoining rooms."
+    image: "zebra-middle-1.png"
+    alt: "A close-up in warm amber light."
+    caption: "Zebra — A close-up in warm amber light."
     visible: true
   -
-    image: "zebra-close.webp"
-    alt: "An intimate moment in blue and amber."
-    caption: "Zebra — An intimate moment in blue and amber."
+    image: "zebra-middle-2.png"
+    alt: "Two people in a kitchen and adjoining hallway."
+    caption: "Zebra — Two people in a kitchen and adjoining hallway."
+    visible: true
+  -
+    image: "zebra-middle-3.png"
+    alt: "A woman dancing at a blue-lit party."
+    caption: "Zebra — A woman dancing at a blue-lit party."
+    visible: true
+  -
+    image: "zebra-middle-4.png"
+    alt: "A man in profile in a softly lit room."
+    caption: "Zebra — A man in profile in a softly lit room."
+    visible: true
+  -
+    image: "zebra-middle-5.png"
+    alt: "A man wearing a scarf at night."
+    caption: "Zebra — A man wearing a scarf at night."
+    visible: true
+  -
+    image: "zebra-middle-6.png"
+    alt: "A man beside a lake in winter sunlight."
+    caption: "Zebra — A man beside a lake in winter sunlight."
     visible: true
   -
     image: "zebra-night.webp"

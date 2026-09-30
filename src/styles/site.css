@@ -9,3 +9,4 @@ body{position:relative;isolation:isolate}.page-backdrop{position:fixed;inset:0;w
 @media(max-width:650px){.entrance-credit{left:24px;bottom:24px;font-size:10px}.cornell-photo{width:115px;margin-right:20px}.page-backdrop{object-position:55% center}}
 
 .entrance-name{position:absolute;top:78px;left:0;right:0;text-align:center;font:normal 18px/1.4 Georgia,serif;color:#f6f7ef;text-shadow:0 1px 7px #000}
+.frame-pair.three-column-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
