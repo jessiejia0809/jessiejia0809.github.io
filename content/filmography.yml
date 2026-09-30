@@ -1,48 +1,39 @@
 title: "Cinematography"
 reels:
   - videoId: "GRS0mZbOk8w"
-    title: "Cinematography reel 01"
+    title: "Cinematography reel 2025"
   - videoId: "bQzUK90k4Lc"
-    title: "Cinematography reel 02"
+    title: "Cinematography reel 2026"
 items:
-  -
-    title: "Bad"
+  - title: "Bad"
     url: "https://www.thevoicesof.org/resources"
     role: "Director of photography"
     director: "Sid Martis and Alexander Park"
-  -
-    title: "UNDONE"
+  - title: "UNDONE"
     url: "https://www.instagram.com/undonemovie/"
     role: "Director of photography"
     director: "Izzy Falchuk"
-  -
-    title: "TEAOAR"
+  - title: "TEAOAR"
     url: "https://www.instagram.com/teaoarfilm/"
     role: "Director of photography"
     director: "Justin Jonseok Lee"
-  -
-    title: "Delilah"
+  - title: "Delilah"
     url: "https://www.instagram.com/delilahfilm_/"
     role: "Director of photography"
     director: "Annette Murray"
-  -
-    title: "Alien in Ithaca"
+  - title: "Alien in Ithaca"
     role: "Director of photography"
     director: "Emma Alexander"
-  -
-    title: "Athlete"
+  - title: "Athlete"
     role: "Director of photography"
     director: "Sid Martis and Alexander Park"
-  -
-    title: "Interrogation"
+  - title: "Interrogation"
     url: "https://www.youtube.com/watch?v=mj6vcqwWXWI"
     role: "Director of photography"
     director: "Andy Pang"
-  -
-    title: "Milk shake kiss"
+  - title: "Milk shake kiss"
     url: "https://www.instagram.com/reel/DHGaZ4UsEhJ/"
     role: "1st AC"
-  -
-    title: "Top of my School"
+  - title: "Top of my School"
     url: "https://www.instagram.com/topofmyschoolfilm/"
     role: "1st AC"
