@@ -1,15 +1,12 @@
 name: "Jessie Jia"
 email: "hj359@cornell.edu"
-description: "Jessie Jia (Huiyu Jia, 贾惠妤) is a researcher and filmmaker with a computer science background at Cornell University, exploring human–AI interaction and creative AI."
+description: "Jessie Jia (贾惠妤 Huiyu Jia) a researcher and filmmaker working at the intersection of human–AI interaction, creative practice, and emerging media. I graduated from Cornell University in 2026 with a B.S. in Computer Science."
 googleVerification: "a1Jzd5MCuOw3qKQv7QDBGpF3qcKWR4YTUwtyYkqpKrU"
 cv: null
 social:
-  -
-    label: "Instagram"
+  - label: "Instagram"
     url: "https://www.instagram.com/j.xjia_/"
-  -
-    label: "Letterboxd"
+  - label: "Letterboxd"
     url: "https://letterboxd.com/JieC_x/"
-  -
-    label: "Google Scholar"
+  - label: "Google Scholar"
     url: "https://scholar.google.com/citations?user=ZJIScRsAAAAJ&hl=en"
