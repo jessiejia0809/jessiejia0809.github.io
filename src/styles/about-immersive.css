@@ -14,3 +14,20 @@ blockquote p{font:400 clamp(32px,3.5vw,46px)/1.3 Georgia,"Times New Roman",serif
 header{justify-content:flex-end}
 .about-footer{position:relative;max-width:1040px;margin:0 auto;padding:25px 35px 35px;border-top:1px solid #384032;display:flex;justify-content:space-between;font-size:12px;color:#aeb6a9}
 @media(max-width:650px){.about-footer{margin:0 24px;padding:20px 0 25px}}
+
+/* Quiet emphasis: shared typography for the three biography paragraphs. */
+main .intro,
+main .story { max-width:552px; }
+main .intro,
+main .story p { font-size:16px; line-height:1.85; color:#c4cecb; margin-bottom:27px; }
+main .intro strong,
+main .story strong { font-weight:600; color:#f1eee4; }
+main .story em { font-family:Georgia,"Times New Roman",serif; font-size:1.08em; color:#f1eee4; }
+main .story a { color:#f1eee4; font-weight:500; text-decoration:underline; text-decoration-color:#778b86; text-underline-offset:4px; text-decoration-thickness:1px; }
+main .story a:hover { color:#dedcb9; }
+main .story .bio-values { color:#dedcb9; font-weight:500; }
+main .story .bio-values em { color:inherit; }
+@media(max-width:600px) {
+  main .intro,
+  main .story p { font-size:15px; line-height:1.8; }
+}

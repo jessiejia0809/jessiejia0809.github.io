@@ -14,8 +14,8 @@ backgroundYear: 2018
 
 <p class="research-statement">I study how AI changes the way we make, imagine, and tell stories.</p>
 
-<p class="intro">I’m a researcher and filmmaker working at the intersection of human–AI interaction, creative practice, and emerging media. I graduated from Cornell University in 2026 with a B.S. in Computer Science.</p>
+<p class="intro">I’m a <strong>researcher and filmmaker</strong> working at the intersection of human–AI interaction, creative practice, and emerging media. I graduated from <strong>Cornell University</strong> in 2026 with a B.S. in Computer Science.</p>
 
-<div class="story"><p>My films translate larger social and political questions into intimate stories of family, love, and human relationships — asking how we speak about and make sense of the world through them.</p><p>As an HCI researcher advised by Professor <a href="https://qianyang.co/"><strong>Qian Yang</strong></a>, I study how AI can become more than just a quick automation tool: how it can participate in processes of making, experimentation, judgment, and expression while preserving <strong>human agency, craft, and, most importantly, love.</strong></p></div>
+<div class="story"><p>My films translate larger social and political questions into <em>intimate stories of family, love, and human relationships</em> — asking how we speak about and make sense of the world through them.</p><p>As an HCI researcher advised by Professor <a href="https://qianyang.co/">Qian Yang</a>, I study how AI can become more than just a quick automation tool: how it can participate in processes of <strong>making, experimentation, judgment, and expression</strong> while preserving <span class="bio-values">human agency, craft, and, most importantly, <em>love.</em></span></p></div>
 
 <blockquote><div class="quote-note">My favorite quote comes from a Q&amp;A for <em>Brokeback Mountain</em>:</div><p>“Don’t let emotions<br>go to waste.”</p><cite>— Ang Lee (also one of my fav directors!)</cite></blockquote>
