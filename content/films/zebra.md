@@ -8,6 +8,9 @@ roles:
   - "Director"
   - "Producer"
 logline: "A boy who always sees a crying zebra and a girl who needs to be seen."
+festivalSelection:
+  name: "New York Shorts International Film Festival"
+  url: "https://www.nyshorts.net/"
 middleCount: 6
 gallery:
   - image: "zebra.webp"
