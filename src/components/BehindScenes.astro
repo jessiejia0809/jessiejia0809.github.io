@@ -1,0 +1,17 @@
+---
+import Frame from './Frame.astro';
+const photos=[
+ ['dsc00789','Discussing a scene under blue party lighting.'],
+ ['dsc00209','Beside the camera and diffusion screen on the interior set.'],
+ ['dsc00052','A candid moment together in the hallway.'],
+ ['dsc00053','Cast and crew sharing a laugh between takes.'],
+ ['dsc00180','Preparing a bathroom scene with overhead lighting and flags.'],
+ ['dsc00106','Adjusting the camera and tripod between setups.'],
+ ['dsc00125','Reviewing a scene beside the bed.'],
+ ['dsc00814','Rehearsing the dance beneath blue and amber lights.']
+];
+---
+<section id="bts" class="detail-section bts-section">
+ <div class="study-heading"><h2>Behind the scenes</h2><span>On the set of Zebra</span></div>
+ <div class="bts-gallery">{photos.map(([name,alt])=><figure><Frame frame={{image:`zebra-bts/${name}.webp`,alt,caption:`Zebra — ${alt}`}} title="Zebra behind the scenes"/></figure>)}</div>
+</section>

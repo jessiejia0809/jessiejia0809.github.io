@@ -1,0 +1,14 @@
+---
+import Photo from './Photo.astro';
+const documents=[
+ {title:'Production bible',eyebrow:'The making of Zebra',image:'zebra-set/bedroom-concept.png',alt:'Bedroom design concept from the Zebra production bible',url:'https://docs.google.com/presentation/d/1OObyMjsx0h_o6f8DjFRuD8dhxC71--EnpW6C78QTO9Y/edit?slide=id.g3cff533324d_0_3#slide=id.g3cff533324d_0_3',contents:'Script & treatment · Character studies · Set & costume design · Color palette · Cinematography & sound'},
+ {title:'Pitch deck',eyebrow:'The world of Zebra',image:'zebra-night.webp',alt:'A party scene from Zebra',url:'https://docs.google.com/presentation/d/1i843En9hrxh7-46ef592U4GhuXtXQ8O-3lqxwfMsbl8/edit?slide=id.g39641c879de_1_112#slide=id.g39641c879de_1_112',contents:'Logline & synopsis · Themes · Visual references · Zebra symbolism & folklore'}
+];
+---
+<section id="process" class="detail-section film-documents">
+ <div class="study-heading"><h2>Inside the film</h2><span>Explore the documents</span></div>
+ <div class="document-grid">{documents.map(doc=><a class="document-card" href={doc.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${doc.title} in Google Slides (new tab)`}>
+  <div class="document-cover"><Photo name={doc.image} alt={doc.alt}/><div class="document-cover-copy"><span>{doc.eyebrow}</span><h3>{doc.title}</h3><span class="document-open">Open deck ↗</span></div></div>
+  <p>{doc.contents}</p><span class="document-format">Google Slides · Opens in a new tab</span>
+ </a>)}</div>
+</section>

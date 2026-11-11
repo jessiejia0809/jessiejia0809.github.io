@@ -1,0 +1,28 @@
+---
+import Photo from './Photo.astro';
+const tracks=[
+ {id:'party',title:'Party',label:'01 / The party scene',image:'zebra-music/party.png',alt:'Isabel dancing with her arms raised under blue party lighting.',description:'Chill, confused, modern and offbeat—gradually becoming free as Isabel moves through the party. Written primarily for scene 10, with possible echoes in scenes 6–7.',references:'And Your Bird Can Sing — “Main”; the dance sequence in 你的鸟儿会唱歌.'},
+ {id:'love-is-so',title:'Love Is So…',label:'02 / The ending theme',image:'zebra-music/ending.png',alt:'Isabel and Leslie smiling outdoors beside a stone building.',description:'Pop and singable for the end credits: youth and regret (青春、遗憾), held in a positive melody. A love song Leslie and Isabel used to sing together, now carrying the cracks in their relationship. Conceived for the ending, with the melody recurring earlier—such as Isabel singing in the shower.',references:'La La Land — “City of Stars”; 刘若英 — 后来 (Japanese version, as noted); First Love.'}
+];
+---
+<section id="music" class="detail-section soundtrack-showcase">
+ <div class="study-heading"><h2>Music</h2><span>Two moods / One film</span></div>
+ <div class="soundtrack-grid">{tracks.map(track=><article class="soundtrack-card">
+  <Photo name={track.image} alt={track.alt}/>
+  <div class="soundtrack-copy"><p class="study-kicker">{track.label}</p><h3 id={`track-${track.id}`}>{track.title}</h3><p>{track.description}</p><p class="soundtrack-references"><span>References</span>{track.references}</p></div>
+  <audio controls preload="metadata" aria-labelledby={`track-${track.id}`}><source src={`/media/zebra/${track.id}.mp3`} type="audio/mpeg"/><a href={`/media/zebra/${track.id}.mp3`}>Listen to {track.title}</a></audio>
+ </article>)}</div>
+ <div class="party-inspiration">
+ <p class="study-kicker">Scene study / Inspiration → Zebra</p>
+ <h3>Finding freedom on the dance floor</h3>
+ <p>The dance scene in <em>And Your Bird Can Sing</em> inspired Zebra’s bar scene: chill, confused and offbeat, gradually opening into Isabel’s feeling of freedom.</p>
+ <figure><img src="/media/zebra/party-comparison.jpg" alt="Side-by-side dance scenes: And Your Bird Can Sing on the left and Zebra on the right." width="800" height="540" loading="lazy"/><figcaption><span>And Your Bird Can Sing / Sho Miyake · Zebra / Huiyu Jia</span><button class="motion-toggle" aria-pressed="false" aria-label="Play party scene comparison">Play comparison</button></figcaption></figure>
+ </div>
+</section>
+<script>
+const comparison=document.querySelector<HTMLImageElement>('.party-inspiration img')!;
+const toggle=document.querySelector<HTMLButtonElement>('.party-inspiration button')!;
+toggle.addEventListener('click',()=>{const play=toggle.getAttribute('aria-pressed')!=='true';comparison.src=`/media/zebra/party-comparison.${play?'gif':'jpg'}`;toggle.setAttribute('aria-pressed',String(play));toggle.setAttribute('aria-label',`${play?'Pause':'Play'} party scene comparison`);toggle.textContent=play?'Pause comparison':'Play comparison';});
+const tracks=document.querySelectorAll<HTMLAudioElement>('.soundtrack-showcase audio');
+for(const track of tracks)track.addEventListener('play',()=>{for(const other of tracks)if(other!==track)other.pause();});
+</script>

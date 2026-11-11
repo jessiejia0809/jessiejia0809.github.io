@@ -1,0 +1,30 @@
+---
+import Frame from './Frame.astro';
+const frame=(name:string,alt:string)=>({image:`zebra-visual/${name}.png`,alt,caption:`Zebra — ${alt}`});
+---
+<section id="visual-storytelling" class="detail-section visual-storytelling">
+ <div class="study-heading"><h2>Visual storytelling</h2><span>Framing / Movement / Light / Objects</span></div>
+ <header class="visual-intro"><h3>Close together.<br/>Looking elsewhere.</h3><p>I wanted the distance between Leslie and Isabel to be felt in the images: the directions they face, the way the camera follows them, the light they stand in, and the objects they leave behind.</p></header>
+ <article class="visual-chapter"><header><span class="study-kicker">01 / Framing</span><h3>Parallel lives</h3><p>In bed, Leslie and Isabel face different directions. At the mirror, they occupy different sides of the frame. These repeated compositions turn shared routines into separate experiences.</p></header>
+  <div class="visual-pair"><figure><Frame frame={frame('leslie-bed','Leslie in bed, facing one direction.')} title="Zebra"/><figcaption>Leslie / Bedroom</figcaption></figure><figure><Frame frame={frame('isabel-bed','Isabel in bed, facing the opposite direction.')} title="Zebra"/><figcaption>Isabel / Bedroom</figcaption></figure></div>
+  <div class="visual-pair"><figure><Frame frame={frame('leslie-mirror','Leslie reflected on the right side of the bathroom mirror composition.')} title="Zebra"/><figcaption>Leslie / Mirror</figcaption></figure><figure><Frame frame={frame('isabel-mirror','Isabel reflected on the other side of the mirror composition.')} title="Zebra"/><figcaption>Isabel / Mirror</figcaption></figure></div>
+ </article>
+ <article class="visual-chapter"><header><span class="study-kicker">02 / Camera movement & editing</span><h3>Two different rhythms</h3><p>Leslie’s long handheld takes linger; Isabel’s short, rapid actions move ahead. The contrast reflects how quickly she adapts to life, while he struggles to keep pace.</p></header>
+ <div class="visual-pair motion-pair">{[
+ {id:'boy',title:'Leslie / Long handheld takes',note:'An homage to Hu Bo’s 大象席地而坐 / An Elephant Sitting Still and Gus Van Sant’s Elephant.'},
+ {id:'girl',title:'Isabel / Short, rapid actions',note:'A faster rhythm: adapting, acting, moving on.'}
+ ].map(c=><figure><img src={`/media/zebra/${c.id}.jpg`} data-loop={`/media/zebra/${c.id}.gif`} data-poster={`/media/zebra/${c.id}.jpg`} alt={c.title} width="640" height="268" loading="lazy"/><figcaption><span>{c.title}</span><button class="motion-toggle" aria-label={`Play ${c.title}`} aria-pressed="false">Play loop</button></figcaption><p>{c.note}</p></figure>)}</div></article>
+ <article class="visual-chapter"><header><span class="study-kicker">03 / Light & blocking</span><h3>Two temperatures. Two directions.</h3><p>Leslie stays in cool light; Isabel stands in warmth. In the kitchen and adjoining hallway, she is leaving the house while he returns toward the room. Their light and movement pull them apart, even within a shared frame.</p></header><figure><Frame frame={{image:'zebra-set/kitchen-final.png',alt:'Leslie in the cool-lit kitchen and Isabel in the warm hallway.',caption:'Zebra — Cool light for Leslie; warm light for Isabel.'}} title="Zebra"/><figcaption><span>Leslie / Cool / Returning inward</span><span>Isabel / Warm / Leaving home</span></figcaption></figure></article>
+ <article class="visual-chapter"><header><span class="study-kicker">04 / Objects & motifs</span><h3>What the objects carry</h3><p>A pair of leather shoes suggests career and working life; the sneakers hold onto youth and the feeling of school. Between them sits an orange—a small detail that returns later in the film.</p></header><figure><Frame frame={frame('shoes-orange','Leather shoes and red sneakers flank a bowl containing an orange and keys.')} title="Zebra"/></figure><div class="object-reading"><div><h4>Leather shoes</h4><p>Career. The working world.</p></div><div><h4>The orange</h4><p>Keep it in mind. It comes back.</p></div><div><h4>Sneakers</h4><p>Youth. School days.</p></div></div><p class="motif-teaser">Watch the film to discover what the orange becomes.</p></article>
+</section>
+
+<script>
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+for(const figure of document.querySelectorAll<HTMLElement>('.motion-pair figure')){
+ const img=figure.querySelector('img')!;const button=figure.querySelector('button')!;
+ function setPlaying(on:boolean){img.src=(on?img.dataset.loop:img.dataset.poster)!;button.textContent=on?'Pause loop':'Play loop';button.setAttribute('aria-pressed',String(on));button.setAttribute('aria-label',`${on?'Pause':'Play'} ${img.alt}`);}
+ button.addEventListener('click',()=>setPlaying(button.getAttribute('aria-pressed')!=='true'));
+ const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)setPlaying(false);else if(!reduced.matches)setPlaying(true);}},{threshold:.2});observer.observe(figure);
+ reduced.addEventListener('change',()=>{if(reduced.matches)setPlaying(false);});
+}
+</script>

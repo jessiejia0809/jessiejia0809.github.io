@@ -96,3 +96,10 @@ The old Jekyll version is preserved at `pre-cinematic-redesign-2026-09-29`. Rest
 
 ## Personal photographs
 Edit `content/personal.md` for the About photo sections and games text, and `content/on-set.md` for Film’s behind-the-scenes captions. Their images live in `public/images/personal/`; replace those files to swap photographs.
+
+
+## Film archive and detail pages
+
+Every published file in `content/films/` appears individually at `/film/` and has a `/film/<filename>/` page. `order` controls sequence and `featured: true` uses a larger card. Keep `draft: true` for unpublished work. Year, runtime, director, and externalUrl are optional; leave unknown facts out. Existing descriptions remain in each Markdown body.
+
+Add images to `src/assets/images/` and list them in `gallery` with `image`, `alt`, optional `caption`, and `visible`. The first visible image becomes the card cover. An empty gallery shows labeled still placeholders. Add a YouTube `videoId` to replace the player placeholder; `externalUrl` retains a project link. Optional `process` entries have `title` and `note` fields. Zebra's Leslie and Isabel studies are in `src/pages/film/[id].astro`; replace their labeled portrait, reference, and costume placeholders with approved material. No costume imagery has been invented.

@@ -3,6 +3,7 @@ title: "Zebra"
 year: 2026
 order: 1
 draft: false
+featured: true
 roles:
   - "Writer"
   - "Director"

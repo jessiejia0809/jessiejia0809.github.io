@@ -14,8 +14,9 @@ try{
  assert(fs.readFileSync('dist/index.html','utf8').includes('Editing workflow test'));
  assert(fs.readFileSync('dist/about/index.html','utf8').includes('Editing workflow biography check.'));
  assert(film.indexOf('id="sugarfree"')<film.indexOf('id="zebra"'));
- assert(!film.includes('A figure beside the lake at sunset.'));
- assert(film.indexOf('Zebra — A conversation at a party.')<film.indexOf('Zebra — An intimate moment'));
+ const zebra=fs.readFileSync('dist/film/zebra/index.html','utf8');
+ assert(!film.includes('A figure beside the lake at sunset.'));assert(!zebra.includes('A figure beside the lake at sunset.'));
+ assert(zebra.indexOf('Zebra — A conversation at a party.')<zebra.indexOf('Zebra — A close-up in warm amber light.'));
  assert(!research.includes('PRIVATE DRAFT SENTINEL'));assert(!research.includes('Correspondence-Oriented Imitation Learning'));
  console.log('PASS: text/image swaps, gallery visibility/order, film order and project drafts.');
  for(const [p,s] of originals)write(p,s);fs.unlinkSync(fixture);

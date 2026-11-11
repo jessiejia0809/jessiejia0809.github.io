@@ -1,0 +1,88 @@
+[
+  {
+    "name": "Leslie",
+    "age": "26",
+    "profile": "Leslie (26) has just completed a comparative literature PhD from a prestigious university, but he still can't find a job. He is thin, artsy, sentimental—always living half a step inside his own head like a character in a Eric Rohmer film. \nHe is confused. He thinks abstractly. He feels like the zebra who escaped the zoo, dreaming of the Serengeti, only to end up stranded on an ordinary street, awkward and trapped by traffic.",
+    "intro": "He is thin, artsy, sentimental—always living half a step inside his own head like a character in a Eric Rohmer film.",
+    "image": "leslie-profile-0",
+    "looks": [
+      {
+        "letter": "A",
+        "scene": "Scene 1",
+        "image": "leslie-costume-0",
+        "items": [
+          "Muted dark-blue cotton pajama set",
+          "Matching house slippers",
+          "Over Ear headphones"
+        ]
+      },
+      {
+        "letter": "B",
+        "scene": "Scenes 3–4",
+        "image": "leslie-costume-1",
+        "items": [
+          "Oval/rectangular reading glasses",
+          "Dark sweater",
+          "White T-shirt",
+          "Gray/beige sweatpants",
+          "Black Converse",
+          "Tote bag (Jessie has a dark green Cannes tote)"
+        ]
+      },
+      {
+        "letter": "C",
+        "scene": "Scenes 5–12",
+        "image": "leslie-costume-2",
+        "items": [
+          "Dark coat",
+          "Bright blue scarf"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Isabel",
+    "age": "24",
+    "profile": "Isabel (24) is in the final year of her MBA. She’s easygoing, always smiling—the kind of person who can make a room feel lighter. But beneath that warmth, she’s wrestling with the same identity fracture and confusion about the world, fighting for a job she doesn't even wants herself just for living..\nShe acts completely opposite of Leslie - she socializes, adapts to new food and culture, absorbs new information hungrily, sometimes, even at the cost of her own identity. All of this, is SO exhausting.",
+    "intro": "She’s easygoing, always smiling—the kind of person who can make a room feel lighter.",
+    "image": "isabel-profile-1",
+    "looks": [
+      {
+        "letter": "A",
+        "scene": "Scene 1",
+        "image": "isabel-costume-4",
+        "items": [
+          "Muted pink cotton pajama set",
+          "Beige/white underwear with side ties, washed / slightly worn-looking",
+          "White socks",
+          "Matching house slippers"
+        ]
+      },
+      {
+        "letter": "B",
+        "scene": "Scenes 1–11",
+        "image": "isabel-costume-5",
+        "items": [
+          "White or light-blue button-down shirt",
+          "Dark blue turtleneck sweater",
+          "White camisole",
+          "Dark winter coat (Japanese/Korean style)",
+          "Jeans",
+          "Small gold/silver earrings",
+          "Small gold/silver necklace",
+          "Red Converse",
+          "Black/dark blue Longchamp bag",
+          "Hair tie"
+        ]
+      },
+      {
+        "letter": "C",
+        "scene": "Scene 12",
+        "image": "isabel-costume-6",
+        "items": [
+          "BOY’s T-shirt"
+        ]
+      }
+    ]
+  }
+]

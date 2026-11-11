@@ -1,0 +1,11 @@
+---
+import Frame from './Frame.astro';
+const shots=[{id:'5C',label:'Lakeside / Wide'},{id:'5G',label:'Lakeside / Over the shoulder'},{id:'7H',label:'Bar / Conversation'},{id:'7M',label:'Bar / Close-up'}];
+---
+<section id="storyboards" class="detail-section storyboard-section">
+ <div class="study-heading"><h2>Storyboard → Actual shot</h2><span>Four compositions</span></div>
+ <div class="storyboard-grid">{shots.map(shot=><article>
+ <h3>{shot.id}<span>{shot.label}</span></h3>
+ <div class="storyboard-pair">{[{type:'board',label:'Storyboard'},{type:'shot',label:'Actual shot'}].map(item=><figure><Frame frame={{image:`zebra-storyboards/${shot.id}-${item.type}.png`,alt:`${shot.id} — ${item.label}: ${shot.label}`,caption:`${shot.id} / ${shot.label} — ${item.label}`}} title="Zebra"/><figcaption>{item.label}</figcaption></figure>)}</div>
+ </article>)}</div>
+</section>

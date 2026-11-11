@@ -1,0 +1,23 @@
+---
+import characters from '../../content/zebra-characters.json';
+import Photo from './Photo.astro';
+import {resolveImage} from '../lib/images';
+---
+<section id="characters" class="detail-section character-editorial">
+ <div class="study-heading"><h2>Character & costume</h2><span>Zebra / Production bible</span></div>
+ {characters.map(c=><article class="character-spread" aria-labelledby={`character-${c.name.toLowerCase()}`}>
+  <div class="profile-column">
+   <p class="study-kicker">Character profile</p>
+   <h3 id={`character-${c.name.toLowerCase()}`}>{c.name} <span>{c.age}</span></h3>
+   <figure class="profile-reference"><Photo name={`zebra-studies/${c.image}.png`} alt={`${c.name} — character reference from the production bible`}/><figcaption>Character reference</figcaption></figure>
+   <p class="profile-excerpt">{c.intro}</p>
+   <details class="profile-full"><summary>Read character profile <span aria-hidden="true">+</span></summary><p>{c.profile}</p></details>
+  </div>
+  <div class="costume-column"><p class="study-kicker">Costume</p><div class="costume-looks">
+   {c.looks.map(look=><details name={`looks-${c.name}`} class="costume-look" open={look.letter==='B'}>
+    <summary><span>Costume {look.letter}</span><span>{look.scene}</span><span class="look-toggle" aria-hidden="true">+</span></summary>
+    <div class="look-body"><a class="costume-drawing" href={resolveImage(`zebra-studies/${look.image}.png`).src} data-image data-caption={`${c.name} — Costume ${look.letter}, ${look.scene}. Production bible costume study.`} aria-label={`Enlarge ${c.name} costume ${look.letter} sketch`}><Photo name={`zebra-studies/${look.image}.png`} alt={`${c.name}, costume ${look.letter}: original annotated costume sketch`}/><span>View sketch ↗</span></a><ul>{look.items.map(item=><li>{item}</li>)}</ul></div>
+   </details>)}
+  </div></div>
+ </article>)}
+</section>

@@ -12,6 +12,7 @@ for(const button of document.querySelectorAll<HTMLButtonElement>('[data-film]'))
  const content=document.querySelector('#film-detail')!;content.replaceChildren(...Array.from(source.children).filter(e=>e.tagName!=='SUMMARY').map(e=>e.cloneNode(true)));open(filmDialog,button);
 });
 for(const dialog of [imageDialog,filmDialog]){
+ if(!dialog)continue;
  dialog.querySelector('button')!.addEventListener('click',()=>dialog.close());
  dialog.addEventListener('close',()=>{document.body.style.overflow='';opener?.focus();});
  dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});

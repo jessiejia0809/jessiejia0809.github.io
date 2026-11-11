@@ -1,0 +1,43 @@
+---
+import {getCollection,render} from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import Frame from '../../components/Frame.astro';
+import CharacterStudies from '../../components/CharacterStudies.astro';
+import SetShowcase from '../../components/SetShowcase.astro';
+import FilmDocuments from '../../components/FilmDocuments.astro';
+import BehindScenes from '../../components/BehindScenes.astro';
+import StoryboardShots from '../../components/StoryboardShots.astro';
+import VisualStorytelling from '../../components/VisualStorytelling.astro';
+import SoundtrackShowcase from '../../components/SoundtrackShowcase.astro';
+import '../../styles/film-portfolio.css';
+import {site} from '../../lib/content';
+export async function getStaticPaths(){
+ const films=(await getCollection('films',({data})=>!data.draft)).sort((a,b)=>a.data.order-b.data.order);
+ return films.map((film,i)=>({params:{id:film.id},props:{film,next:films[(i+1)%films.length]}}));
+}
+const {film,next}=Astro.props;
+const d=film.data;
+const {Content}=await render(film);
+const frames=d.gallery.filter(f=>f.visible);
+const steps=d.process.length?d.process:[
+ {title:'Research & references',note:'Moodboards, visual references, and early ideas forthcoming.'},
+ {title:'Production & design',note:'Storyboards, lighting plans, and design development forthcoming.'},
+ {title:'From process to screen',note:'Behind-the-scenes material and final-frame comparisons forthcoming.'}
+];
+
+---
+<Page title={d.title} theme="cinema">
+<main id="main" class="film-page film-detail-page">
+ <a class="back-to-films" href={`/film/#${film.id}`}>← All films</a>
+ <header class="detail-heading"><div><p class="portfolio-eyebrow">Film {d.year&&` / ${d.year}`}</p><h1>{d.title}</h1><p>{d.roles.join(' / ')}{d.runtimeMinutes&&` · ${d.runtimeMinutes} min`}{d.director&&` · Dir. ${d.director}`}</p></div><p class="detail-logline">{d.logline}</p></header>
+ <nav class="detail-nav" aria-label="Film sections"><a href="#watch">Watch</a><a href="#about">About</a><a href="#stills">Stills</a><a href="#process">Process</a>{film.id==='zebra'&&<><a href="#visual-storytelling">Visual storytelling</a><a href="#storyboards">Storyboards</a><a href="#characters">Character & costume</a><a href="#set-design">Set design</a><a href="#music">Music</a><a href="#bts">Behind the scenes</a></>}</nav>
+ <section id="watch" class="detail-section"><h2>Watch the film</h2>{d.videoId?<iframe class="film-player" src={`https://www.youtube-nocookie.com/embed/${d.videoId}`} title={`${d.title} — film player`} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen/>:<div class="film-placeholder player-placeholder"><span>{d.title}</span><small>Film player forthcoming</small><a href={`mailto:${site.email}?subject=${encodeURIComponent(d.title+' screening inquiry')}`}>Inquire about a screening ↗</a></div>}</section>
+ <section id="about" class="detail-section detail-about"><div><h2>About the film</h2>{d.festivalSelection&&<a class="detail-festival" href={d.festivalSelection.url}><img src="/images/festivals/new-york-shorts-2026.png" alt={`2026 Official Selection — ${d.festivalSelection.name}`} width="975" height="531"/>{d.festivalSelection.name}</a>}</div><div class="prose"><Content/>{d.externalUrl&&<p><a href={d.externalUrl}>Original project link ↗</a></p>}</div></section>
+ <section id="stills" class="detail-section"><h2>Film stills</h2>{frames.length?<div class="detail-stills">{frames.map((frame,i)=><div class:list={[{'still-wide':i===0}]}><Frame frame={frame} title={d.title}/><p class="still-caption">{frame.caption||frame.alt}</p></div>)}</div>:<div class="placeholder-grid">{[1,2,3].map(n=><div class="film-placeholder"><span>Still {String(n).padStart(2,'0')}</span><small>Image forthcoming</small></div>)}</div>}</section>
+ {film.id==='zebra'&&<><VisualStorytelling/><StoryboardShots/><CharacterStudies/><SetShowcase/><SoundtrackShowcase/><BehindScenes/></>}
+ {film.id==='zebra'?<FilmDocuments/>:<section id="process" class="detail-section"><h2>Behind the film</h2><p class="section-intro">Production & design process</p><div class="process-list">{steps.map((step,i)=><details><summary><span>{String(i+1).padStart(2,'0')}</span>{step.title}<span class="process-plus" aria-hidden="true">+</span></summary><div><p>{step.note}</p><div class="film-placeholder"><span>{step.title}</span><small>Process materials forthcoming</small></div></div></details>)}</div></section>}
+ <nav class="film-pagination" aria-label="More films"><a href="/film/">← All films</a><a href={`/film/${next.id}/`}>Next: {next.data.title} →</a></nav>
+</main>
+<dialog id="image-dialog" aria-label="Film still"><button class="close-image" aria-label="Close image">Close ×</button><img id="large-image" alt=""/><p id="image-caption"></p></dialog>
+<script>import '../../scripts/gallery';</script>
+</Page>

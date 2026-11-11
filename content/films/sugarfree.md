@@ -3,6 +3,7 @@ title: "Sugarfree"
 year: 2025
 order: 2
 draft: false
+featured: true
 roles:
   - "Writer"
   - "Director"

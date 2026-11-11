@@ -1,0 +1,25 @@
+---
+import Frame from './Frame.astro';
+const frame=(image:string,alt:string)=>({image:`zebra-set/${image}`,alt,caption:alt});
+const palette=[['Grey blues','#788991'],['Pale beige','#c6bdab'],['Dusty green','#828a77'],['Off-white','#e3e1d6'],['Concrete tones','#93938a']];
+const details=[
+ {image:'memory-board.jpg',title:'The memory board',alt:'Bedroom detail — a corkboard of photographs, postcards, travel keepsakes, and film references.'},
+ {image:'desk-detail.jpg',title:'The desk',alt:'Bedroom detail — books, a mirror, a lamp, a laptop, and a beer can on the wooden desk.'},
+ {image:'keepsakes.jpg',title:'The keepsakes',alt:'Bedroom detail — an open memory book beside a pencil portrait.'}
+];
+---
+<section id="set-design" class="detail-section set-showcase">
+ <div class="study-heading"><h2>Set design</h2><span>Bedroom / Kitchen</span></div>
+ <header class="set-intro"><div><p class="study-kicker">Leslie & Isabel’s apartment</p><h3>A shared space.</h3></div><blockquote>“slightly underlit, emotionally airless and cool, washed”<cite>Production bible · Art strategies</cite></blockquote></header>
+ <div class="set-palette"><div><h4>Base palette — Reality</h4><p>Muted, desaturated, slightly cool.</p></div><div class="palette-colors">{palette.map(([label,color])=><div><span style={`background:${color}`} aria-hidden="true"></span><small>{label}</small></div>)}</div></div>
+ <p class="palette-note">Color studies based on the bible’s palette descriptions.</p>
+ <section class="set-room" aria-labelledby="bedroom-title"><header class="room-heading"><span>01</span><h3 id="bedroom-title">Bedroom</h3><p>“framed through doorways, mirrors, windows”</p></header>
+  <div class="set-comparison"><figure><Frame frame={frame('bedroom-concept.png','Bedroom — design concept from the production bible.')} title="Zebra set design"/><figcaption><span>Design concept</span><span>Production bible</span></figcaption></figure><figure><Frame frame={frame('bedroom-final.jpg','Bedroom — the finished set seen through the doorway, with a memory board, film posters, books, and a chair.')} title="Zebra set design"/><figcaption><span>Realized set</span><span>Through the doorway</span></figcaption></figure></div>
+  <div class="set-objects">{details.map(d=><figure><Frame frame={frame(d.image,d.alt)} title="Zebra set detail"/><figcaption>{d.title}</figcaption></figure>)}</div>
+  <details class="set-design-note"><summary>Design details <span aria-hidden="true">+</span></summary><div><p>The bedroom concept gathers a desk, books, a mirror, film posters, and a memory board into a shared room. The finished set carries those details into the doorway view and the close-ups of the desk and keepsakes.</p><blockquote>“Natural light, realistic, soft shadows”<cite>Production bible · Art strategies</cite></blockquote></div></details>
+ </section>
+ <section class="set-room" aria-labelledby="kitchen-title"><header class="room-heading"><span>02</span><h3 id="kitchen-title">Kitchen</h3><p>“Wide compositions showing distance even when they’re close”</p></header>
+  <figure class="kitchen-final"><Frame frame={frame('kitchen-final.png','Kitchen — Leslie at the counter and Isabel in the adjoining hallway, divided by the wall and contrasting light.')} title="Zebra set design"/><figcaption><span>In the film</span><span>Leslie & Isabel</span></figcaption></figure>
+  <div class="kitchen-process"><figure><Frame frame={frame('kitchen-concept.png','Kitchen — production bible concept with dishes, cookware, a toaster, jam, and crumbs along the counters.')} title="Zebra set design"/><figcaption>Design concept · Production bible</figcaption></figure><div><p class="study-kicker">Everyday objects</p><h4>A room already lived in.</h4><p>The concept places dishes, cookware, a toaster, and breakfast remnants along the narrow counters. In the film, the kitchen and adjoining hallway hold the two characters apart within one frame.</p><blockquote>“Negative space between Leslie and Isabel”<cite>Production bible · Art strategies</cite></blockquote></div></div>
+ </section>
+</section>
