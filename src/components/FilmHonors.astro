@@ -1,0 +1,12 @@
+---
+const {film,full=false}=Astro.props;
+const allFestivals=film.festivals ?? [];
+const festivals=full?allFestivals:allFestivals.slice(0,2);
+---
+{(film.production||festivals.length>0)&&<div class="film-honors">
+ {film.production&&<span class="thesis-badge">{film.production}</span>}
+ {festivals.length>0&&<div class="festival-honors" aria-label="Festivals and awards">{festivals.map(f=><p>{full?<a href={f.url}>{f.name}</a>:<strong>{f.name}</strong>}<span>{f.recognition}</span></p>)}</div>}
+</div>}
+<style is:global>
+.film-honors{margin-top:12px}.thesis-badge{display:inline-block;border-left:2px solid #a6b889;background:#a6b88912;padding:5px 9px;color:#c5d3b5;font-size:10px;line-height:1.6}.festival-honors{border-top:1px solid #48513c;padding-top:8px;margin-top:10px;display:grid;gap:8px}.festival-honors p,.index-cards .festival-honors p,.universe-films .festival-honors p{margin:0;color:#d4c49d;font-size:11px;line-height:1.5}.festival-honors strong{font-weight:400}.festival-honors span{display:block;font-size:9px;color:#a6b396}.festival-honors a{color:inherit}.film-detail-page .festival-honors{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;padding-top:18px}
+</style>

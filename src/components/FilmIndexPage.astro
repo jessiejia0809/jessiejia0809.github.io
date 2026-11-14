@@ -1,0 +1,22 @@
+---
+import {getCollection} from 'astro:content';
+import Page from '../layouts/Page.astro';
+import FilmCard from './FilmCard.astro';
+import {filmography} from '../lib/content';
+import '../styles/film-index.css';
+const films=(await getCollection('films',({data})=>!data.draft)).sort((a,b)=>a.data.order-b.data.order);
+---
+<Page title="Film" theme="cinema">
+<main id="main" class="reel-index">
+ <header class="index-heading"><h1>All films</h1></header>
+ <div class="index-columns">
+
+  <section class="index-works" aria-label="All film works"><div class="index-cards">
+   {films.map(film=><FilmCard film={film}/>)}
+  </div></section>
+  <section class="index-reels" aria-label="Show reels"><h2>Show reels</h2>
+   {filmography.reels.map((reel,i)=><figure><iframe src={`https://www.youtube-nocookie.com/embed/${reel.videoId}?playsinline=1`} title={`${2025+i} show reel`} loading="lazy" allow=" encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><figcaption>{2025+i} show reel</figcaption></figure>)}
+  </section>
+ </div>
+</main>
+</Page>

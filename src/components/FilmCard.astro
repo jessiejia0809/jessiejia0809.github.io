@@ -1,0 +1,22 @@
+---
+import Photo from './Photo.astro';
+import FilmHonors from './FilmHonors.astro';
+import {filmPreviews} from '../lib/film-previews';
+import {hasFilmDetails} from '../lib/film-details';
+const {film,previewObserved=false}=Astro.props;
+const {id,data:d}=film;
+const cover=d.gallery.find(f=>f.visible);
+const href=hasFilmDetails(film)?(id==='zebra'?'/film/':`/film/${id}/`):undefined;
+const Media=href?'a':'div';
+const instagram=d.externalUrl?.includes('instagram.com');
+---
+<article id={id} class="film-card">
+ {d.category&&<span class="work-category">{d.category}</span>}
+ {filmPreviews[id]?<Media href={href} class="film-card-media" aria-label={href?`Explore ${d.title}`:undefined}><video src={filmPreviews[id]} autoplay muted loop playsinline preload="metadata" data-preview={previewObserved||undefined} aria-label={`${d.title} preview`}/>{href&&<span class="film-card-arrow" aria-hidden="true">↗</span>}</Media>:d.videoId?<iframe class="film-card-media" src={`https://www.youtube-nocookie.com/embed/${d.videoId}`} title={`${d.title} — film player`} loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen/>:<Media href={href} class="film-card-media">{cover?<Photo name={cover.image} alt={cover.alt}/>:<span class="film-card-placeholder">{d.title}</span>}{href&&<span class="film-card-arrow" aria-hidden="true">↗</span>}</Media>}
+ <div class="film-card-heading"><h3>{href?<a href={href}>{d.title}</a>:d.title}</h3>{d.externalUrl&&<a class="film-social" href={d.externalUrl} target="_blank" rel="noopener noreferrer" aria-label={`${d.title} — ${instagram?'Instagram':'website'} (opens in new tab)`} title={instagram?'Instagram':'Website'}><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">{instagram?<><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></>:<><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></>}</svg></a>}{d.year&&<small>{d.year}</small>}</div>
+ <p>{d.roles.join(' / ')||d.category||'Film'}{d.season&&` · ${d.season} season`}{d.director&&` · ${d.director}`}</p>
+ <FilmHonors film={d}/>
+</article>
+<style is:global>
+.film-card{min-width:0;scroll-margin-top:30px}.film-card-media{display:block;position:relative;width:100%;aspect-ratio:1.65;border:0;background:#10150f;overflow:hidden}.film-card-media img,.film-card-media video{display:block;width:100%;height:100%;object-fit:cover}.film-card-placeholder{display:grid;place-items:center;height:100%;font:italic 24px Georgia,serif;color:#879577}.film-card-arrow{position:absolute;bottom:10px;right:12px;color:white}.film-card .film-card-heading{display:flex;align-items:center;justify-content:flex-start;gap:8px;margin-top:12px}.film-card-heading h3{font:16px Georgia,serif;margin:0}.film-card-heading small{margin-left:auto;font-size:9px;color:#9eab90}.film-card .film-social{display:inline-flex;align-items:center;justify-content:center;min-width:30px;min-height:30px;color:#acba99;flex-shrink:0}.film-social:hover{color:#eef3df}.film-social:focus-visible{outline:2px solid #c3cea8;outline-offset:2px}.film-card>p{font-size:10px;line-height:1.6;color:#a0ad92;margin:6px 0 0}
+</style>

@@ -3,11 +3,12 @@
   "title": "Orlando's Gift",
   "order": 11,
   "featured": false,
+  "category": "Commissioned sizzler",
   "roles": [],
-  "logline": "Synopsis forthcoming.",
+  "logline": "A commissioned sizzler.",
   "gallery": [],
   "videoId": "ps4hNbzqRTM"
 }
 ---
 
-Film notes forthcoming.
+A commissioned sizzler for Orlando’s Gift.

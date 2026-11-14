@@ -1,5 +1,6 @@
 ---
 title: "Zebra"
+externalUrl: "https://www.instagram.com/zebraa_film/"
 year: 2026
 order: 1
 draft: false

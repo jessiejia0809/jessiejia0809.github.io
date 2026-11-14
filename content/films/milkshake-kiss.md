@@ -7,7 +7,13 @@
     "1st AC"
   ],
   "logline": "Synopsis forthcoming.",
-  "gallery": [],
+  "gallery": [
+    {
+      "image": "milkshake-kiss.jpg",
+      "alt": "Behind the scenes on Milkshake Kiss.",
+      "visible": true
+    }
+  ],
   "externalUrl": "https://www.instagram.com/reel/DHGaZ4UsEhJ/"
 }
 ---

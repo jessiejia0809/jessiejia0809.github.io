@@ -9,7 +9,8 @@
   "logline": "Synopsis forthcoming.",
   "gallery": [],
   "director": "Justin Jonseok Lee",
-  "externalUrl": "https://www.instagram.com/teaoarfilm/"
+  "externalUrl": "https://www.instagram.com/teaoarfilm/",
+  "production": "Cornell PMA thesis production"
 }
 ---
 
