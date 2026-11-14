@@ -9,8 +9,7 @@
   "logline": "Synopsis forthcoming.",
   "gallery": [],
   "director": "Annette Murray",
-  "externalUrl": "https://www.instagram.com/delilahfilm_/",
-  "production": "Cornell PMA thesis production"
+  "externalUrl": "https://www.instagram.com/delilahfilm_/"
 }
 ---
 
