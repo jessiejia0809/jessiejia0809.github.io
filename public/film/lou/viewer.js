@@ -73,7 +73,17 @@ async function init(){if(!gl)throw Error('WebGL unavailable · use the image com
  vec3 base=c.rgb;float grain=sin(world.x*4.3+world.z*2.8)*sin(world.z*3.1)*.012;
  vec3 daylight=mix(vec3(.69,.73,.78),vec3(1.17,1.11,1.02),lit);
  gl_FragColor=vec4((base+grain)*daylight+vec3(.034,.027,.021),1.);}`);gl.useProgram(program);
- const stream=(await fetch('compound.bin')).body.pipeThrough(new DecompressionStream('gzip'));const data=await new Response(stream).arrayBuffer();count=data.byteLength/16;gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);
+ const file=document.documentElement.classList.contains('card')?'compound-card.bin':'compound-web.bin';
+ const response=await fetch(file);
+ if(!response.ok)throw Error('Model download failed. Reload to try again.');
+ const total=Number(response.headers.get('Content-Length'));
+ let received=0;
+ const progress=new TransformStream({transform(chunk,controller){
+  received+=chunk.byteLength;
+  $('status').textContent=total?'Loading model · '+Math.min(100,Math.round(100*received/total))+'%':'Loading model · '+(received/1e6).toFixed(1)+' MB';
+  controller.enqueue(chunk);
+ }});
+ const stream=response.body.pipeThrough(progress).pipeThrough(new DecompressionStream('gzip'));const data=await new Response(stream).arrayBuffer();count=data.byteLength/16;gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);
  for(const [name,n,type,normalized,start] of [['p',3,gl.FLOAT,false,0],['color',4,gl.UNSIGNED_BYTE,true,12]]){const loc=gl.getAttribLocation(program,name);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,n,type,normalized,16,start)}
  gl.enable(gl.DEPTH_TEST);
  const tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,2048,2048,0,gl.RGBA,gl.UNSIGNED_BYTE,null);
