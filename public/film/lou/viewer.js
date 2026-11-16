@@ -1,4 +1,6 @@
 const $=id=>document.getElementById(id),canvas=document.querySelector('canvas'),gl=canvas.getContext('webgl',{antialias:true});
+const mobile=matchMedia('(pointer:coarse)').matches||innerWidth<=700;
+const mobileBatches=[];
 const panel=document.querySelector('aside'),lines=[],dots=[],target=[0,2,0];
 let loaded=false,count,program,drag,yaw=.48,pitch=.68,zoom=1,active=-1,pinned=false,mode='Blender',timer,frame;
 function markConcept(i){Array.from($('concepts').children).forEach((b,j)=>b.setAttribute('aria-pressed',String(i===j)))}
@@ -60,10 +62,33 @@ function draw(){const width=canvas.clientWidth,height=canvas.clientHeight,aspect
  const edge=(n,size,pad)=>Math.max(pad,Math.min(size-pad,n));const ax=edge(x,width,22),ay=Math.max(76,Math.min(height-52,y));let sx=ax,sy=ay;for(let j=0;placed.some(([a,b])=>Math.hypot(a-sx,b-sy)<25)&&j<150;j++){const r=4*Math.sqrt(j+1);sx=edge(ax+r*Math.cos(j*2.4),width,18);sy=Math.max(68,Math.min(height-42,ay+r*Math.sin(j*2.4)))}placed.push([sx,sy]);dots[i].style.left=sx+'px';dots[i].style.top=sy+'px';for(const [k,t] of Object.entries({x1:ax,y1:ay,x2:sx,y2:sy}))lines[i].setAttribute(k,t)});
  if(!loaded)return;if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height}gl.viewport(0,0,width,height);
  for(const [name,v] of Object.entries({eye,right,up,forward}))gl.uniform3fv(gl.getUniformLocation(program,name),v);
- gl.uniform2f(gl.getUniformLocation(program,'scale'),s/aspect,s);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.drawArrays(gl.TRIANGLES,0,count)}
+ gl.uniform2f(gl.getUniformLocation(program,'scale'),s/aspect,s);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);if(mobileBatches.length){
+  for(const batch of mobileBatches){
+   gl.bindBuffer(gl.ARRAY_BUFFER,batch.vertices);gl.vertexAttribPointer(0,3,gl.SHORT,false,10,0);gl.vertexAttribPointer(1,4,gl.UNSIGNED_BYTE,true,10,6);
+   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,batch.indices);gl.drawElements(gl.TRIANGLES,batch.count,gl.UNSIGNED_SHORT,0);
+  }
+ }else gl.drawArrays(gl.TRIANGLES,0,count)}
 async function init(){if(!gl)throw Error('WebGL unavailable · use the image comparisons');
  function shader(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s}
  function link(vertex,fragment){const p=gl.createProgram();gl.attachShader(p,shader(gl.VERTEX_SHADER,vertex));gl.attachShader(p,shader(gl.FRAGMENT_SHADER,fragment));gl.bindAttribLocation(p,0,'p');gl.bindAttribLocation(p,1,'color');gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(p));return p}
+ if(mobile){
+  program=link('attribute vec3 p;attribute vec4 color;uniform vec3 eye,right,up,forward;uniform vec2 scale;varying lowp vec4 c;varying mediump vec2 ground;void main(){vec3 v=p-eye;float d=dot(v,forward);gl_Position=vec4(dot(v,right)*scale.x,dot(v,up)*scale.y,1.0002*d-.1,d);c=color;ground=p.xz;}','precision mediump float;varying lowp vec4 c;varying mediump vec2 ground;void main(){if(length(ground/vec2(105.,98.))>1.)discard;gl_FragColor=vec4(c.rgb*vec3(1.12,1.08,1.02),1.);}');
+  gl.useProgram(program);
+  const response=await fetch('mobile.mesh');
+  if(!response.ok)throw Error('Mobile model unavailable');
+  const data=await response.arrayBuffer(),view=new DataView(data);
+  function upload(target,offset,length){
+   const buffer=gl.createBuffer();gl.bindBuffer(target,buffer);gl.bufferData(target,new Uint8Array(data,offset,length),gl.STATIC_DRAW);return buffer;
+  }
+  for(let offset=0;offset<data.byteLength;){
+   const vertexCount=view.getUint32(offset,true),count=view.getUint32(offset+4,true);offset+=8;
+   const vertices=upload(gl.ARRAY_BUFFER,offset,vertexCount*10);offset+=vertexCount*10;
+   const indices=upload(gl.ELEMENT_ARRAY_BUFFER,offset,count*2);offset+=count*2;
+   mobileBatches.push({vertices,indices,count});
+  }
+  gl.enableVertexAttribArray(0);gl.enableVertexAttribArray(1);gl.enable(gl.DEPTH_TEST);
+  loaded=true;draw();$('status').textContent=dots.length?'Drag to rotate · Tap a shot to compare':'Drag to rotate';return;
+ }
  const light='vec3 lightSpace(vec3 p){return vec3(dot(p,vec3(.819,0.,.574))/160.,dot(p,vec3(.394,.728,-.563))/160.,-dot(p,vec3(-.418,.686,.596))/220.);}';
  const shadow=link('attribute vec3 p;'+light+'void main(){gl_Position=vec4(lightSpace(p),1.);}', 'precision highp float;void main(){float z=gl_FragCoord.z;gl_FragColor=vec4(floor(z*255.)/255.,fract(z*255.),0.,1.);}');
  program=link('attribute vec3 p;attribute vec4 color;varying lowp vec4 c;uniform vec3 eye,right,up,forward;uniform vec2 scale;varying highp vec3 world,lightUV;'+light+'void main(){world=p;lightUV=.5+.5*lightSpace(p);vec3 v=p-eye;float d=dot(v,forward);gl_Position=vec4(dot(v,right)*scale.x,dot(v,up)*scale.y,1.0002*d-.1,d);c=color;}',
@@ -91,4 +116,9 @@ async function init(){if(!gl)throw Error('WebGL unavailable · use the image com
  const fb=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,fb);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tex,0);const rb=gl.createRenderbuffer();gl.bindRenderbuffer(gl.RENDERBUFFER,rb);gl.renderbufferStorage(gl.RENDERBUFFER,gl.DEPTH_COMPONENT16,2048,2048);gl.framebufferRenderbuffer(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.RENDERBUFFER,rb);
  if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE)throw Error('Shadow buffer unavailable');
  gl.useProgram(shadow);gl.viewport(0,0,2048,2048);gl.clearColor(1,1,1,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.drawArrays(gl.TRIANGLES,0,count);gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.useProgram(program);loaded=true;draw();$('status').textContent=(dots.length?'Drag to rotate · Scroll to zoom · Explore the camera dots':'Drag to rotate · Scroll to zoom')}
-draw();init().catch(e=>{$('status').textContent=e.message});window.addEventListener('resize',schedule);
+function fallback(){
+ loaded=false;document.documentElement.classList.add('fallback');$('poster').hidden=false;
+ $('status').textContent=dots.length?'Concept view · Tap a line on the right to compare shots':'Concept view · Open study to compare shots';
+}
+canvas.addEventListener('webglcontextlost',fallback);
+draw();init().catch(fallback);window.addEventListener('resize',schedule);
