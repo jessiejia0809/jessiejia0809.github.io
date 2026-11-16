@@ -1,16 +1,54 @@
 const $=id=>document.getElementById(id),canvas=document.querySelector('canvas'),gl=canvas.getContext('webgl',{antialias:true});
 const panel=document.querySelector('aside'),lines=[],dots=[],target=[0,2,0];
 let loaded=false,count,program,drag,yaw=.48,pitch=.68,zoom=1,active=-1,pinned=false,mode='Blender',timer,frame;
-function dismiss(){clearTimeout(timer);active=-1;pinned=false;panel.hidden=true;dots.forEach(b=>b.classList.remove('sel'))}
+function markConcept(i){Array.from($('concepts').children).forEach((b,j)=>b.setAttribute('aria-pressed',String(i===j)))}
+function dismiss(){markConcept(-1);clearTimeout(timer);active=-1;pinned=false;panel.hidden=true;dots.forEach(b=>b.classList.remove('sel'))}
 function delayedClose(){clearTimeout(timer);if(!pinned)timer=setTimeout(dismiss,280)}
-function preview(i){clearTimeout(timer);active=i;panel.hidden=false;$('name').textContent=shots[i].name;dots.forEach((b,j)=>b.classList.toggle('sel',i===j));
+function preview(i){markConcept(i);clearTimeout(timer);active=i;panel.hidden=false;$('name').textContent=shots[i].name;dots.forEach((b,j)=>b.classList.toggle('sel',i===j));
  const src=shots[i].images[mode];$('plate').hidden=!src;$('missing').hidden=!!src;if(src){$('plate').src=src;$('plate').alt=shots[i].name+' · '+mode}else $('missing').textContent='No matched concept yet';
  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.textContent===mode))}
 for(const m of ['Concept','Blender','Atlas']){const b=document.createElement('button');b.textContent=m;b.onclick=()=>{mode=m;preview(active)};document.querySelector('nav').append(b)}
 panel.onpointerenter=()=>clearTimeout(timer);panel.onpointerleave=delayedClose;$('close').onclick=dismiss;
 function markers(){if(document.documentElement.classList.contains("card"))return;dots.length=lines.length=0;$('dots').replaceChildren();document.querySelector('svg').replaceChildren();shots.forEach((s,i)=>{const b=document.createElement('button');b.className='dot';b.setAttribute('aria-label','Compare '+s.name);b.onpointerenter=()=>{if(!pinned)preview(i)};b.onpointerleave=delayedClose;b.onfocus=()=>{if(!pinned)preview(i)};b.onclick=()=>{pinned=true;preview(i)};$('dots').append(b);dots.push(b);
- const line=document.createElementNS('http://www.w3.org/2000/svg','line');document.querySelector('svg').append(line);lines.push(line)});} markers();$('set').onchange=()=>{dismiss();shots=$('set').selectedIndex?hallShots:filmShots;markers();draw()};
-document.onkeydown=e=>{if(e.key==='Escape')dismiss()};
+ const line=document.createElementNS('http://www.w3.org/2000/svg','line');document.querySelector('svg').append(line);lines.push(line)});} markers();
+const peek=$('peek'),railList=$('concepts');
+function hidePeek(){peek.classList.remove('open')}
+function showPeek(button){
+ if(!button || !railList.contains(button))return hidePeek();
+ const shot=shots[Number(button.dataset.index)];
+ peek.querySelector('img').src=shot.thumbnail;
+ peek.querySelector('figcaption').textContent=shot.name;
+ const rail=$('overview').getBoundingClientRect();
+ const top=button.getBoundingClientRect().top-rail.top;
+ peek.style.top=Math.max(0,Math.min(top-35,rail.height-peek.offsetHeight))+'px';
+ peek.classList.add('open');
+}
+let pointer=null;
+railList.onpointermove=e=>{
+ if(e.pointerType==='touch')return;
+ pointer=[e.clientX,e.clientY];showPeek(e.target.closest('button'));
+};
+railList.onpointerleave=()=>{pointer=null;hidePeek()};
+railList.onscroll=()=>{if(pointer)showPeek(document.elementFromPoint(...pointer)?.closest('button'))};
+railList.onfocusin=e=>showPeek(e.target.closest('button'));
+railList.onfocusout=hidePeek;
+function overview(){
+ hidePeek();
+ const rail=$('overview');
+ rail.hidden=document.documentElement.classList.contains('card');
+ railList.replaceChildren();
+ if(rail.hidden)return;
+ shots.forEach((shot,i)=>{
+  const button=document.createElement('button');
+  button.dataset.index=i;
+  button.setAttribute('aria-label',shot.name);
+  button.setAttribute('aria-pressed','false');
+  button.onclick=()=>{hidePeek();pinned=true;mode='Concept';preview(i)};
+  railList.append(button);
+ });
+}
+overview();
+document.onkeydown=e=>{if(e.key==='Escape'){hidePeek();dismiss()}};
 canvas.onpointerdown=e=>{dismiss();drag=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId)};
 canvas.onpointermove=e=>{if(!drag)return;yaw-=(e.clientX-drag[0])*.006;pitch=Math.max(.22,Math.min(1.35,pitch+(e.clientY-drag[1])*.005));drag=[e.clientX,e.clientY];schedule()};canvas.onpointerup=canvas.onpointercancel=()=>drag=null;
 canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.7,Math.min(1.8,zoom*Math.exp(-Math.sign(e.deltaY)*.045)));schedule()},{passive:false});
