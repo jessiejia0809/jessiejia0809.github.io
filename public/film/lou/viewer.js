@@ -70,9 +70,11 @@ function draw(){const width=canvas.clientWidth,height=canvas.clientHeight,aspect
  }else gl.drawArrays(gl.TRIANGLES,0,count)}
 async function init(){if(!gl)throw Error('WebGL unavailable · use the image comparisons');
  function shader(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s}
+ // Keep the entire orbit visible even when a narrow portrait viewport pushes the camera far back.
+ const clipDepth='float clipDepth(float d){const float nearPlane=1.;const float farPlane=8192.;return ((farPlane+nearPlane)*d-2.*farPlane*nearPlane)/(farPlane-nearPlane);}';
  function link(vertex,fragment){const p=gl.createProgram();gl.attachShader(p,shader(gl.VERTEX_SHADER,vertex));gl.attachShader(p,shader(gl.FRAGMENT_SHADER,fragment));gl.bindAttribLocation(p,0,'p');gl.bindAttribLocation(p,1,'color');gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(p));return p}
  if(mobile){
-  program=link('attribute vec3 p;attribute vec4 color;uniform vec3 eye,right,up,forward;uniform vec2 scale;varying lowp vec4 c;varying mediump vec2 ground;void main(){vec3 v=p-eye;float d=dot(v,forward);gl_Position=vec4(dot(v,right)*scale.x,dot(v,up)*scale.y,1.0002*d-.1,d);c=color;ground=p.xz;}','precision mediump float;varying lowp vec4 c;varying mediump vec2 ground;void main(){if(length(ground/vec2(105.,98.))>1.)discard;gl_FragColor=vec4(c.rgb*vec3(1.12,1.08,1.02),1.);}');
+  program=link(clipDepth+'attribute vec3 p;attribute vec4 color;uniform vec3 eye,right,up,forward;uniform vec2 scale;varying lowp vec4 c;varying mediump vec2 ground;void main(){vec3 v=p-eye;float d=dot(v,forward);gl_Position=vec4(dot(v,right)*scale.x,dot(v,up)*scale.y,clipDepth(d),d);c=color;ground=p.xz;}','precision mediump float;varying lowp vec4 c;varying mediump vec2 ground;void main(){if(length(ground/vec2(105.,98.))>1.)discard;gl_FragColor=vec4(c.rgb*vec3(1.12,1.08,1.02),1.);}');
   gl.useProgram(program);
   const response=await fetch('mobile.mesh');
   if(!response.ok)throw Error('Mobile model unavailable');
@@ -91,7 +93,7 @@ async function init(){if(!gl)throw Error('WebGL unavailable · use the image com
  }
  const light='vec3 lightSpace(vec3 p){return vec3(dot(p,vec3(.819,0.,.574))/160.,dot(p,vec3(.394,.728,-.563))/160.,-dot(p,vec3(-.418,.686,.596))/220.);}';
  const shadow=link('attribute vec3 p;'+light+'void main(){gl_Position=vec4(lightSpace(p),1.);}', 'precision highp float;void main(){float z=gl_FragCoord.z;gl_FragColor=vec4(floor(z*255.)/255.,fract(z*255.),0.,1.);}');
- program=link('attribute vec3 p;attribute vec4 color;varying lowp vec4 c;uniform vec3 eye,right,up,forward;uniform vec2 scale;varying highp vec3 world,lightUV;'+light+'void main(){world=p;lightUV=.5+.5*lightSpace(p);vec3 v=p-eye;float d=dot(v,forward);gl_Position=vec4(dot(v,right)*scale.x,dot(v,up)*scale.y,1.0002*d-.1,d);c=color;}',
+ program=link(clipDepth+'attribute vec3 p;attribute vec4 color;varying lowp vec4 c;uniform vec3 eye,right,up,forward;uniform vec2 scale;varying highp vec3 world,lightUV;'+light+'void main(){world=p;lightUV=.5+.5*lightSpace(p);vec3 v=p-eye;float d=dot(v,forward);gl_Position=vec4(dot(v,right)*scale.x,dot(v,up)*scale.y,clipDepth(d),d);c=color;}',
  `precision highp float;varying lowp vec4 c;varying highp vec3 world,lightUV;uniform sampler2D depthMap;
  void main(){if(length(world.xz/vec2(105.,98.))>1.)discard;
  float lit=0.;for(int i=-1;i<=1;i++){for(int j=-1;j<=1;j++){vec2 rg=texture2D(depthMap,lightUV.xy+vec2(float(i),float(j))/2048.).rg;lit+=step(lightUV.z-.00065,rg.x+rg.y/255.)/9.;}}
