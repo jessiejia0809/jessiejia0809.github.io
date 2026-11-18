@@ -2,7 +2,7 @@ title: "Other making"
 items:
   -
     title: "Sweet Sweet Betrayal"
-    description: "A multiplayer mobile party runner built with C++ / CUGL."
+    description: "A multiplayer mobile platformer developed by Cornell students in C++ / CUGL. Race as sugar gliders to collect treasure and sabotage rivals with traps. Winner of the Judge’s Choice Award at the 2025 GDIAC Showcase."
     url: "https://github.com/caitlynjin/sweet-sweet-betrayal"
   -
     title: "S.A.M.S.A."

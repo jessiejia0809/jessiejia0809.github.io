@@ -59,3 +59,5 @@ a:focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
 }
 @media(max-width:550px) { .personal-row { grid-template-columns:1fr; } .personal-row figure { max-width:170px; } }
 @media(prefers-reduced-motion:reduce) { a { transition:none; } }
+
+.games-note .betrayal-team{max-width:none;width:100%;margin:20px 0 14px}.games-note .betrayal-team img{width:100%;height:auto;max-height:none;object-fit:contain}
