@@ -6,7 +6,7 @@ import {hasFilmDetails} from '../lib/film-details';
 const {film,previewObserved=false}=Astro.props;
 const {id,data:d}=film;
 const cover=d.gallery.find(f=>f.visible);
-const href=id==='lou'?'/film/lou/':hasFilmDetails(film)?(id==='zebra'?'/film/':`/film/${id}/`):undefined;
+const href=id==='lou'?'/film/lou/':hasFilmDetails(film)?(id==='zebra'?'/portfolio/':`/film/${id}/`):undefined;
 const Media=href?'a':'div';
 const instagram=d.externalUrl?.includes('instagram.com');
 ---

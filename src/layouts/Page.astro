@@ -6,14 +6,19 @@ import Seo from '../components/Seo.astro';
 import Photo from '../components/Photo.astro';
 import { site } from '../lib/content';
 const {title,theme='plain',home=false,background,backgroundCredit,backgroundDirector,backgroundYear}=Astro.props;
-const links=[['About me','/about/'],['Research','/research/'],['Portfolio','/film/']];
+const links=[['About me','/about/'],['Research','/research/'],['Portfolio','/portfolio/#top']];
 ---
 <!doctype html><html lang="en"><head>
 <Analytics/>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><Seo title={home?'Jessie Jia | Cornell · HCI Research & Film':title==='Research'?'Research | Jessie Jia · Cornell':`${title} · ${site.name}`} profile={home} noindex={Astro.url.pathname==='/404.html'}/><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/></head><body class={theme}>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><Seo title={home?'Jessie Jia | Cornell · HCI Research & Film':title==='Research'?'Research | Jessie Jia · Cornell':`${title} · ${site.name}`} profile={home} noindex={Astro.url.pathname==='/404.html'}/><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/></head><body class={theme} id="top">
 {background && <Photo name={background} alt="" class="page-backdrop" aria-hidden="true" eager/>}
-{!home && <><a class="skip" href="#main">Skip to content</a><header class="navigation"><nav aria-label="Main navigation">{links.map(([label,url])=><a href={url} aria-current={Astro.url.pathname===url?'page':undefined}>{label}</a>)}</nav></header></>}
+{!home && <><a class="skip" href="#main">Skip to content</a><header class="navigation"><nav aria-label="Main navigation">{links.map(([label,url])=><a href={url} aria-current={Astro.url.pathname===url.split('#')[0]?'page':undefined}>{label}</a>)}</nav></header></>}
 <slot/>
+<script>
+for(const link of document.querySelectorAll<HTMLAnchorElement>('a[href="/portfolio/#top"]'))link.addEventListener('click',()=>{
+ if(location.pathname==='/portfolio/')document.querySelectorAll<HTMLElement>('.project-scroll').forEach(panel=>{panel.scrollTop=0;});
+});
+</script>
 {background && backgroundCredit && backgroundDirector && backgroundYear && <p class="page-background-credit"><cite>{backgroundCredit}</cite><span>Dir. {backgroundDirector} · {backgroundYear}</span></p>}
 {!home && <footer><a href={`mailto:${site.email}`}>{site.email}</a><a href="/">Home</a></footer>}
 </body></html>
