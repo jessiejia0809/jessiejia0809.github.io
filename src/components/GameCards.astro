@@ -1,12 +1,17 @@
 ---
 import {games} from '../lib/content';
+import YoutubeFacade from './YoutubeFacade.astro';
 ---
 {games.items.map((game,i)=><article class="film-card game-card" id={i===0?'sweet-sweet-betrayal':'samsa'}>
- {i===0?<a class="film-card-media" href={game.url} target="_blank" rel="noopener noreferrer" aria-label="Sweet Sweet Betrayal source code"><img src="/images/personal/sweet-sweet-betrayal-banner.png" alt="Sweet Sweet Betrayal — sugar gliders in a forest" width="1090" height="440" loading="lazy"/></a>:<iframe class="film-card-media" src="https://www.youtube-nocookie.com/embed/uCZGuHmA-Bk" title="S.A.M.S.A. game video" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen/>}
+ <span class="game-tag">Game design</span>
+ {i===0?<a class="film-card-media" href={game.url} target="_blank" rel="noopener noreferrer" aria-label="Sweet Sweet Betrayal source code"><img src="/images/personal/sweet-sweet-betrayal-banner.png" alt="Sweet Sweet Betrayal — sugar gliders in a forest" width="1090" height="440" loading="lazy"/></a>:<YoutubeFacade id="uCZGuHmA-Bk" title="S.A.M.S.A."/>}
  <div class="film-card-heading"><h3>{game.title}</h3><a class="game-external" href={game.url} target="_blank" rel="noopener noreferrer" aria-label={i===0?'Sweet Sweet Betrayal source code (opens in new tab)':'S.A.M.S.A. on YouTube (opens in new tab)'}>↗</a></div>
  <p>{i===0?'Multiplayer mobile platformer · C++ / CUGL':'2D escort platformer · Java / LibGDX'}</p>
  {i===0&&<p class="game-award">Judge’s Choice · GDIAC 2025</p>}
 </article>)}
 <style is:global>
-.game-card .film-card-media img{object-fit:contain}.game-card .game-external{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;color:#b8c9a3;font-size:17px}.game-card .game-award{font-size:10px;color:#c6c39e;margin-top:7px}
+.game-card .film-card-media img{object-fit:contain}.game-card .game-external{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;color:#b8c9a3;font-size:17px}.game-card .game-award{display:inline-block;margin:12px 0 0;border-left:2px solid #a6b889;background:#a6b88912;padding:5px 9px;color:#c5d3b5;font-size:10px;line-height:1.6}
+.game-card{padding:14px 14px 16px;border:1px solid #657451;background:#a6b8890d;transition:border-color .25s,background .25s}
+.game-card:hover,.game-card:focus-within{border-color:#a6b889;background:#a6b88917}
+.game-card .game-tag{display:block;margin-bottom:12px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#a6b889}
 </style>

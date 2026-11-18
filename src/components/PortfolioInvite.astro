@@ -1,0 +1,86 @@
+---
+import {getCollection} from 'astro:content';
+import {getImage} from 'astro:assets';
+import {resolveImage} from '../lib/images';
+import {filmPreviews} from '../lib/film-previews';
+const films=(await getCollection('films',({data})=>!data.draft)).sort((a,b)=>a.data.order-b.data.order);
+const lead=['zebra','sugarfree','lou'];
+const ordered=[...lead.map(id=>films.find(f=>f.id===id)),...films.filter(f=>!lead.includes(f.id))].filter(Boolean) as typeof films;
+type Slide={title:string;video?:string;image?:string;poster?:string;contain?:boolean};
+const slides:Slide[]=[];
+for(const film of ordered){
+ const d=film.data;
+ if(film.id==='lou'){slides.push({title:d.title,image:'/film/lou/assets/view_01_shot08-concept.png'});continue;}
+ const preview=filmPreviews[film.id];
+ if(!preview)continue;
+ const cover=d.gallery.find(g=>g.visible);
+ let poster:string|undefined;
+ if(cover){try{poster=(await getImage({src:resolveImage(cover.image),format:'webp',width:720})).src;}catch{}}
+ slides.push({title:d.title,video:preview,poster});
+}
+slides.push({title:'Sweet Sweet Betrayal',image:'/images/personal/sweet-sweet-betrayal-banner.png',contain:true});
+---
+<a class="portfolio-invite" href="/portfolio/" aria-label="Open my portfolio of film and game projects">
+ <span class="invite-screen">
+  {slides.map((s,i)=><span class:list={['invite-slide',{on:i===0}]} data-title={s.title}>
+   {s.video?<video muted loop playsinline preload="none" poster={s.poster} data-src={s.video} tabindex="-1" aria-hidden="true"></video>:<img src={s.image} alt="" loading="lazy" decoding="async" class:list={[{contain:s.contain}]}/>}
+  </span>)}
+  <span class="invite-bar"><strong class="invite-title">{slides[0].title}</strong><span class="invite-go">Portfolio <span aria-hidden="true">↗</span></span></span>
+  <span class="invite-ticks" aria-hidden="true">{slides.map((_,i)=><i class:list={[{on:i===0}]}></i>)}</span>
+ </span>
+</a>
+<script>
+const root=document.querySelector<HTMLElement>('.portfolio-invite');
+if(root){
+ const slides=[...root.querySelectorAll<HTMLElement>('.invite-slide')];
+ const ticks=[...root.querySelectorAll<HTMLElement>('.invite-ticks i')];
+ const title=root.querySelector<HTMLElement>('.invite-title')!;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const saver=(navigator as any).connection?.saveData===true;
+ let index=0,timer=0,visible=false;
+ const video=(n:number)=>slides[n].querySelector('video');
+ const load=(n:number)=>{const v=video(n);if(v&&!v.getAttribute('src')){v.preload='auto';v.src=v.dataset.src!;}};
+ function show(n:number){
+  index=n;
+  slides.forEach((slide,k)=>{
+   const on=k===n;
+   slide.classList.toggle('on',on);ticks[k].classList.toggle('on',on);
+   const v=video(k);if(!v)return;
+   if(on){load(k);v.play().catch(()=>{});}else v.pause();
+  });
+  title.textContent=slides[n].dataset.title??'';
+  load((n+1)%slides.length);
+ }
+ function stop(){clearInterval(timer);timer=0;slides.forEach((_,k)=>video(k)?.pause());}
+ function start(){
+  if(timer||!visible||document.hidden||reduced.matches||saver)return;
+  show(index);
+  timer=window.setInterval(()=>show((index+1)%slides.length),4500);
+ }
+ new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)start();else stop();},{threshold:.35}).observe(root);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
+ reduced.addEventListener('change',()=>{if(reduced.matches)stop();else start();});
+}
+</script>
+<style is:global>
+.portfolio-invite{display:block;width:min(100%,380px);margin:44px 0 0;color:var(--paper,#f4f0e5)}
+.portfolio-invite:hover{opacity:1}
+.invite-screen{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:#06100f;border:1px solid var(--rule,#e5ebdc26);border-radius:2px;box-shadow:0 18px 40px #0007;transition:border-color .25s,transform .25s}
+.portfolio-invite:hover .invite-screen,.portfolio-invite:focus-visible .invite-screen{border-color:var(--accent,#d2d6ae);transform:translateY(-3px)}
+.invite-screen::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#050d0ed9,transparent 50%);pointer-events:none}
+.invite-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s}
+.invite-slide.on{opacity:1}
+.invite-slide video,.invite-slide img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .9s}
+.invite-slide img.contain{object-fit:contain}
+.portfolio-invite:hover .invite-slide video,.portfolio-invite:hover .invite-slide img,.portfolio-invite:focus-visible .invite-slide video,.portfolio-invite:focus-visible .invite-slide img{transform:scale(1.05)}
+.invite-bar{position:absolute;left:14px;right:14px;bottom:20px;z-index:1;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.invite-title{font:400 15px Georgia,"Times New Roman",serif;color:var(--paper,#f4f0e5)}
+.invite-go{display:inline-flex;gap:6px;font-size:11px;letter-spacing:.06em;color:var(--accent,#d2d6ae);opacity:.75;transition:opacity .2s}
+.invite-go span{display:inline-block;transition:transform .2s}
+.portfolio-invite:hover .invite-go,.portfolio-invite:focus-visible .invite-go{opacity:1}
+.portfolio-invite:hover .invite-go span,.portfolio-invite:focus-visible .invite-go span{transform:translate(3px,-3px)}
+.invite-ticks{position:absolute;left:14px;right:14px;bottom:9px;z-index:1;display:flex;gap:4px}
+.invite-ticks i{flex:1;height:2px;background:#f4f0e533;transition:background .3s}
+.invite-ticks i.on{background:var(--accent,#d2d6ae)}
+@media(prefers-reduced-motion:reduce){.invite-screen,.invite-slide,.invite-slide video,.invite-slide img,.invite-go span{transition:none}}
+</style>

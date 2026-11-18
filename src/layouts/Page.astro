@@ -6,7 +6,7 @@ import Seo from '../components/Seo.astro';
 import Photo from '../components/Photo.astro';
 import { site } from '../lib/content';
 const {title,theme='plain',home=false,background,backgroundCredit,backgroundDirector,backgroundYear}=Astro.props;
-const links=[['About me','/about/'],['Research','/research/'],['Portfolio','/portfolio/#top']];
+const links=[['About me','/about/'],['Research','/research/'],['Portfolio','/portfolio/']];
 ---
 <!doctype html><html lang="en"><head>
 <Analytics/>
@@ -15,8 +15,11 @@ const links=[['About me','/about/'],['Research','/research/'],['Portfolio','/por
 {!home && <><a class="skip" href="#main">Skip to content</a><header class="navigation"><nav aria-label="Main navigation">{links.map(([label,url])=><a href={url} aria-current={Astro.url.pathname===url.split('#')[0]?'page':undefined}>{label}</a>)}</nav></header></>}
 <slot/>
 <script>
-for(const link of document.querySelectorAll<HTMLAnchorElement>('a[href="/portfolio/#top"]'))link.addEventListener('click',()=>{
- if(location.pathname==='/portfolio/')document.querySelectorAll<HTMLElement>('.project-scroll').forEach(panel=>{panel.scrollTop=0;});
+for(const link of document.querySelectorAll<HTMLAnchorElement>('a[href="/portfolio/"]'))link.addEventListener('click',event=>{
+ if(location.pathname!=='/portfolio/')return;
+ event.preventDefault();
+ document.querySelectorAll<HTMLElement>('.project-scroll').forEach(panel=>{panel.scrollTop=0;});
+ scrollTo({top:0,behavior:'smooth'});
 });
 </script>
 {background && backgroundCredit && backgroundDirector && backgroundYear && <p class="page-background-credit"><cite>{backgroundCredit}</cite><span>Dir. {backgroundDirector} · {backgroundYear}</span></p>}

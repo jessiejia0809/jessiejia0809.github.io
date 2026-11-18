@@ -1,0 +1,28 @@
+---
+const {id,title}=Astro.props;
+---
+<button type="button" class="film-card-media yt-facade" data-youtube-id={id} data-title={title} aria-label={`Play ${title}`} style={`background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`}><span class="yt-play" aria-hidden="true"></span></button>
+<script>
+document.addEventListener('click',event=>{
+ const button=(event.target as Element).closest<HTMLButtonElement>('.yt-facade');
+ if(!button)return;
+ const iframe=document.createElement('iframe');
+ iframe.className=button.className.replace('yt-facade','').trim();
+ iframe.src=`https://www.youtube-nocookie.com/embed/${button.dataset.youtubeId}?autoplay=1&playsinline=1`;
+ iframe.title=`${button.dataset.title} — video player`;
+ iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+ iframe.referrerPolicy='strict-origin-when-cross-origin';
+ iframe.allowFullscreen=true;
+ button.replaceWith(iframe);
+});
+</script>
+<style is:global>
+.yt-facade{padding:0;cursor:pointer;background-color:#10150f;background-size:cover;background-position:center}
+.yt-facade::after{content:"";position:absolute;inset:0;background:#0a0f0888;transition:background .25s}
+.yt-facade:hover::after,.yt-facade:focus-visible::after{background:#0a0f0833}
+.yt-play{position:absolute;z-index:1;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border:1px solid #dce6cc;border-radius:50%;transition:transform .25s,background .25s}
+.yt-play::before{content:"";position:absolute;left:21px;top:16px;border-left:15px solid #dce6cc;border-top:10px solid transparent;border-bottom:10px solid transparent}
+.yt-facade:hover .yt-play,.yt-facade:focus-visible .yt-play{transform:scale(1.12);background:#a6b88933}
+.yt-facade:focus-visible{outline:2px solid #c3cea8;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.yt-facade::after,.yt-play{transition:none}}
+</style>
