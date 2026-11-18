@@ -9,3 +9,5 @@ body:has(.personal-notes) .shade{background:linear-gradient(90deg,#08131530,#081
 body:has(.personal-notes) .scene{background-size:cover;background-position:35% center}
 @media(max-width:600px){body:has(.personal-notes) .scene{background-size:auto 100svh;background-position:39% center}body:has(.personal-notes) .shade{background:linear-gradient(0deg,#101b1dbb,#101b1dcc 45%,#101b1d55)}.personal-notes{padding-bottom:90px}.personal-notes~.film-credit{left:24px;bottom:18px;font-size:9px}}
 @media(max-width:600px){.personal-notes~.film-credit{position:relative;left:auto;bottom:auto;margin:0 27px 25px}}
+
+.samsa-video{display:block;width:100%;aspect-ratio:16/9;border:0;background:#080b08;margin:18px 0 10px}
