@@ -53,7 +53,7 @@ overview();
 document.onkeydown=e=>{if(e.key==='Escape'){hidePeek();dismiss()}};
 canvas.onpointerdown=e=>{dismiss();drag=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId)};
 canvas.onpointermove=e=>{if(!drag)return;yaw-=(e.clientX-drag[0])*.006;pitch=Math.max(.22,Math.min(1.35,pitch+(e.clientY-drag[1])*.005));drag=[e.clientX,e.clientY];schedule()};canvas.onpointerup=canvas.onpointercancel=()=>drag=null;
-canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.7,Math.min(1.8,zoom*Math.exp(-Math.sign(e.deltaY)*.045)));schedule()},{passive:false});
+canvas.addEventListener('wheel',e=>{e.preventDefault();if(new URLSearchParams(location.search).has('portfolio')){parent.postMessage({type:'lou-preview-scroll',delta:e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?innerHeight:1)},location.origin);return;}zoom=Math.max(.7,Math.min(1.8,zoom*Math.exp(-Math.sign(e.deltaY)*.045)));schedule()},{passive:false});
 function schedule(){if(frame)return;frame=requestAnimationFrame(()=>{frame=0;draw()})}
 const dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0);
 function draw(){const width=canvas.clientWidth,height=canvas.clientHeight,aspect=width/height,s=2.45,radius=282*Math.max(1,1.42/aspect)/zoom;

@@ -1,0 +1,13 @@
+---
+import {games} from '../lib/content';
+---
+<section id="game-design" class="portfolio-games" aria-labelledby="games-heading">
+ <header><span>Interactive projects</span><h2 id="games-heading">Game design</h2></header>
+ <div class="game-card-grid">{games.items.map((game,i)=><article class="game-card" id={i===0?'sweet-sweet-betrayal':'samsa'}>
+ {i===0?<a href={game.url} target="_blank" rel="noopener noreferrer" aria-label="Sweet Sweet Betrayal source code"><img src="/images/personal/sweet-sweet-betrayal-team.jpg" alt="Sweet Sweet Betrayal team at the GDIAC Showcase" width="2592" height="1728" loading="lazy"/></a>:<iframe src="https://www.youtube-nocookie.com/embed/uCZGuHmA-Bk" title="S.A.M.S.A. game video" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen/>}
+ <h3>{game.title}</h3><p>{game.description}</p><a class="game-project-link" href={game.url} target="_blank" rel="noopener noreferrer">{i===0?'View code':'Watch on YouTube'} ↗</a>
+ </article>)}</div>
+</section>
+<style is:global>
+.portfolio-games{padding:38px 0;border-top:1px solid #35432b;scroll-margin-top:75px}.portfolio-games>header{margin-bottom:24px}.portfolio-games>header>span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9aaa8c}.portfolio-games h2{font:32px Georgia,serif;margin:8px 0 0}.game-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}.game-card{min-width:0;scroll-margin-top:75px}.game-card>a:first-child{display:block}.game-card img,.game-card iframe{display:block;width:100%;aspect-ratio:3/2;height:auto;border:0;background:#080a09;object-fit:contain}.game-card h3{font:20px Georgia,serif;margin:16px 0 9px}.game-card p{font-size:12px;line-height:1.8;color:#aab89c;margin:0}.game-project-link{display:inline-block;margin-top:14px;font-size:11px;border-bottom:1px solid #6c8158;padding-bottom:3px}@media(max-width:600px){.game-card-grid{grid-template-columns:1fr;gap:32px}}
+</style>
