@@ -3,6 +3,7 @@
   "title": "Milkshake Kiss",
   "order": 13,
   "featured": false,
+  "localVideo": "/media/milkshake-kiss.mp4",
   "roles": [
     "1st AC"
   ],

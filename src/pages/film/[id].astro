@@ -18,6 +18,7 @@ const {Content}=await render(film);
 const frames=d.gallery.filter(f=>f.visible);
 const steps=d.process.filter(step=>! /forthcoming/i.test(step.note));
 const hasAbout=Boolean(film.body?.trim()&&!/^(Film notes forthcoming\.)$/i.test(film.body.trim()));
+const verticalReel=film.id==='milkshake-kiss';
 const hasWatch=Boolean(d.localVideo||d.videoId);
 
 ---
@@ -27,7 +28,7 @@ const hasWatch=Boolean(d.localVideo||d.videoId);
  <header class="detail-heading"><div><p class="portfolio-eyebrow">{d.category||'Film'} {d.year&&` / ${d.year}`}</p><h1>{d.title}</h1><p>{d.roles.join(' / ')}{d.season&&` · ${d.season} season`}{d.runtimeMinutes&&` · ${d.runtimeMinutes} min`}{d.director&&` · Dir. ${d.director}`}</p></div>{! /forthcoming/i.test(d.logline)&&<p class="detail-logline">{d.logline}</p>}</header>
  <FilmHonors film={d} full/>
  <nav class="detail-nav" aria-label="Film sections">{hasWatch&&<a href="#watch">Watch</a>}{(hasAbout||d.externalUrl||d.festivalSelection)&&<a href="#about">About</a>}{film.id==='zebra'?<><a href="#process">Production bible & pitch deck</a><a href="#bts">Behind the scenes</a><a href="/portfolio/#gallery-motion">Explore the interactive gallery ↗</a></>:!d.category&&<>{frames.length>0&&<a href="#stills">Stills</a>}{steps.length>0&&<a href="#process">Process</a>}</>}</nav>
- {hasWatch&&<section id="watch" class="detail-section"><h2>{d.category?'Watch the video':'Watch the film'}</h2>{d.localVideo?<video class="film-player" src={d.localVideo} controls playsinline preload="metadata"/>:d.videoId?<iframe class="film-player" src={`https://www.youtube-nocookie.com/embed/${d.videoId}`} title={`${d.title} — film player`} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen/>:null}</section>}
+ {hasWatch&&<section id="watch" class="detail-section"><h2>{verticalReel?'Watch the reel':d.category?'Watch the video':'Watch the film'}</h2>{d.localVideo?<video class:list={["film-player", {"vertical-reel-player":verticalReel}]} src={d.localVideo} poster={verticalReel?"/media/milkshake-kiss-poster.jpg":undefined} aria-label={verticalReel?d.title+" reel":undefined} controls playsinline preload="metadata"/>:d.videoId?<iframe class="film-player" src={`https://www.youtube-nocookie.com/embed/${d.videoId}`} title={`${d.title} — film player`} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen/>:null}</section>}
  {(hasAbout||d.externalUrl||d.festivalSelection)&&<section id="about" class="detail-section detail-about"><div><h2>{d.category?'About the project':'About the film'}</h2>{d.festivalSelection&&<a class="detail-festival" href={d.festivalSelection.url}><img src="/images/festivals/new-york-shorts-2026.png" alt={`2026 Official Selection — ${d.festivalSelection.name}`} width="975" height="531"/>{d.festivalSelection.name}</a>}</div><div class="prose">{hasAbout&&<Content/>}{d.externalUrl&&<p><a href={d.externalUrl}>Original project link ↗</a></p>}</div></section>}
  {film.id!=='zebra'&&!d.category&&frames.length>0&&<section id="stills" class="detail-section"><h2>Film stills</h2><div class="detail-stills">{frames.map((frame,i)=><div class:list={[{'still-wide':i===0}]}><Frame frame={frame} title={d.title}/></div>)}</div></section>}
  {film.id==='zebra'&&<BehindScenes/>}
@@ -35,3 +36,7 @@ const hasWatch=Boolean(d.localVideo||d.videoId);
  <nav class="film-pagination" aria-label="More films"><a href="/film-index/">← All films</a><a href={`/film/${next.id}/`}>Next: {next.data.title} →</a></nav>
 </main>
 </Page>
+
+<style>
+.vertical-reel-player{display:block;width:min(100%,380px);height:auto;aspect-ratio:9/16;margin-inline:auto}
+</style>
