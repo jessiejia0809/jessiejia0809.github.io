@@ -2,6 +2,7 @@
 import {getCollection,render} from 'astro:content';
 import Page from '../../layouts/Page.astro';
 import Frame from '../../components/Frame.astro';
+import Photo from '../../components/Photo.astro';
 import FilmHonors from '../../components/FilmHonors.astro';
 import {hasFilmDetails} from '../../lib/film-details';
 import FilmDocuments from '../../components/FilmDocuments.astro';
@@ -25,6 +26,13 @@ const hasWatch=Boolean(d.localVideo||d.videoId);
 <Page title={d.title} theme="cinema">
 <main id="main" class="film-page film-detail-page">
  <a class="back-to-films" href={`/film-index/#${film.id}`}>← All films</a>
+ {verticalReel?<>
+ <h1 class="sr-only">{d.title}</h1>
+ <div class="milkshake-media">
+  <video class="milkshake-reel" src={d.localVideo} poster="/media/milkshake-kiss-poster.jpg" aria-label="Milkshake Kiss film reel" controls playsinline preload="metadata"/>
+  <aside class="milkshake-bts" aria-labelledby="bts-label"><h2 id="bts-label">BTS</h2>{frames.map(frame=><Photo name={frame.image} alt={frame.alt}/>)}</aside>
+ </div>
+ </>:<>
  <header class="detail-heading"><div><p class="portfolio-eyebrow">{d.category||'Film'} {d.year&&` / ${d.year}`}</p><h1>{d.title}</h1><p>{d.roles.join(' / ')}{d.season&&` · ${d.season} season`}{d.runtimeMinutes&&` · ${d.runtimeMinutes} min`}{d.director&&` · Dir. ${d.director}`}</p></div>{! /forthcoming/i.test(d.logline)&&<p class="detail-logline">{d.logline}</p>}</header>
  <FilmHonors film={d} full/>
  <nav class="detail-nav" aria-label="Film sections">{hasWatch&&<a href="#watch">Watch</a>}{(hasAbout||d.externalUrl||d.festivalSelection)&&<a href="#about">About</a>}{film.id==='zebra'?<><a href="#process">Production bible & pitch deck</a><a href="#bts">Behind the scenes</a><a href="/portfolio/#gallery-motion">Explore the interactive gallery ↗</a></>:!d.category&&<>{frames.length>0&&<a href="#stills">Stills</a>}{steps.length>0&&<a href="#process">Process</a>}</>}</nav>
@@ -34,9 +42,16 @@ const hasWatch=Boolean(d.localVideo||d.videoId);
  {film.id==='zebra'&&<BehindScenes/>}
  {film.id==='zebra'?<FilmDocuments/>:!d.category&&steps.length>0&&<section id="process" class="detail-section"><h2>Behind the film</h2><p class="section-intro">Production & design process</p><div class="process-list">{steps.map((step,i)=><details><summary><span>{String(i+1).padStart(2,'0')}</span>{step.title}<span class="process-plus" aria-hidden="true">+</span></summary><div><p>{step.note}</p></div></details>)}</div></section>}
  <nav class="film-pagination" aria-label="More films"><a href="/film-index/">← All films</a><a href={`/film/${next.id}/`}>Next: {next.data.title} →</a></nav>
+ </>}
 </main>
 </Page>
 
 <style>
+.milkshake-media{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:start;max-width:1000px;margin:28px auto 50px}
+.milkshake-reel{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#080b08}
+.milkshake-bts h2{font:16px Georgia,serif;margin:0 0 12px}
+.milkshake-bts :global(img){display:block;width:100%;height:auto;margin-bottom:16px}
+@media(max-width:650px){.milkshake-media{grid-template-columns:1fr}.milkshake-reel{max-width:380px;margin-inline:auto}}
+
 .vertical-reel-player{display:block;width:min(100%,380px);height:auto;aspect-ratio:9/16;margin-inline:auto}
 </style>
