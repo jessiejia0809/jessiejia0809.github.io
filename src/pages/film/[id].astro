@@ -47,11 +47,11 @@ const hasWatch=Boolean(d.localVideo||d.videoId);
 </Page>
 
 <style>
-.milkshake-media{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:start;max-width:1000px;margin:28px auto 50px}
+.milkshake-media{display:grid;grid-template-columns:minmax(0,380px) minmax(0,220px);gap:clamp(16px,3vw,36px);align-items:start;max-width:636px;margin:28px auto 50px}
 .milkshake-reel{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#080b08}
 .milkshake-bts h2{font:16px Georgia,serif;margin:0 0 12px}
 .milkshake-bts :global(img){display:block;width:100%;height:auto;margin-bottom:16px}
-@media(max-width:650px){.milkshake-media{grid-template-columns:1fr}.milkshake-reel{max-width:380px;margin-inline:auto}}
+@media(max-width:480px){.milkshake-media{grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px}.milkshake-bts h2{font-size:14px}}
 
 .vertical-reel-player{display:block;width:min(100%,380px);height:auto;aspect-ratio:9/16;margin-inline:auto}
 </style>
