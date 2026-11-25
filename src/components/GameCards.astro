@@ -1,10 +1,11 @@
 ---
 import {games} from '../lib/content';
 import YoutubeFacade from './YoutubeFacade.astro';
+const {omitBetrayal=false}=Astro.props;
 ---
-{games.items.map((game,i)=><article class="film-card game-card" id={i===0?'sweet-sweet-betrayal':'samsa'}>
+{games.items.map((game,i)=>(!omitBetrayal||i!==0)&&<article class="film-card game-card" id={i===0?'sweet-sweet-betrayal':'samsa'}>
  <span class="game-tag">Game design</span>
- {i===0?<a class="film-card-media" href={game.url} target="_blank" rel="noopener noreferrer" aria-label="Sweet Sweet Betrayal source code"><img src="/images/personal/sweet-sweet-betrayal-banner.png" alt="Sweet Sweet Betrayal — sugar gliders in a forest" width="1090" height="440" loading="lazy"/></a>:<YoutubeFacade id="uCZGuHmA-Bk" title="S.A.M.S.A."/>}
+ {i===0?<a class="film-card-media" href="/portfolio/#sweet-sweet-betrayal" aria-label="Explore Sweet Sweet Betrayal"><img src="/images/personal/sweet-sweet-betrayal-banner.png" alt="Sweet Sweet Betrayal — sugar gliders in a forest" width="1090" height="440" loading="lazy"/></a>:<YoutubeFacade id="uCZGuHmA-Bk" title="S.A.M.S.A."/>}
  <div class="film-card-heading"><h3>{game.title}</h3><a class="game-external" href={game.url} target="_blank" rel="noopener noreferrer" aria-label={i===0?'Sweet Sweet Betrayal source code (opens in new tab)':'S.A.M.S.A. on YouTube (opens in new tab)'}>↗</a></div>
  <p>{i===0?'Multiplayer mobile platformer · C++ / CUGL':'2D escort platformer · Java / LibGDX'}</p>
  {i===0&&<p class="game-award">Judge’s Choice · GDIAC 2025</p>}

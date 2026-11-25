@@ -9,8 +9,8 @@
   "logline": "Synopsis forthcoming.",
   "gallery": [],
   "director": "Sid Martis and Alexander Park",
-  "externalUrl": "https://www.thevoicesof.org/resources",
-  "videoId": "xT4J0kljvu0"
+  "externalUrl": "https://www.youtube.com/watch?v=Jy4KUaU2ntY&t=1s",
+  "videoId": "Jy4KUaU2ntY"
 }
 ---
 

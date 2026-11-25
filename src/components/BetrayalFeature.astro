@@ -1,0 +1,49 @@
+---
+const studies=[
+ {title:'Build the course. Set the trap.',images:[{image:'traps',alt:'Drag traps and platforms onto the shared course to your advantage.'},{image:'glide',alt:'Sugar gliders leap over traps and glide between platforms.'}]},
+ {title:'Finders keepers. Until a friend steals it.',images:[{image:'treasure',alt:'Race to be the first sugar glider to collect the treasure.'},{image:'steal',alt:'Steal the treasure from a friend and turn the race around.'}]}
+];
+---
+<section id="sweet-sweet-betrayal" class="aligned-zebra betrayal-feature" aria-labelledby="betrayal-title">
+ <aside class="zebra-intro">
+  <div class="intro-poster"><img src="/media/sweet-sweet-betrayal/cover.png" alt="Sweet Sweet Betrayal — four mischievous sugar gliders" width="600" height="600" loading="lazy"/></div>
+  <span class="tiny-label">Multiplayer mobile game · 2025</span>
+  <h2 id="betrayal-title" class="project-title">Sweet Sweet Betrayal</h2>
+  <p class="zebra-logline">Race for treasure. Set traps. Steal from your friends.</p>
+  <p class="sugarfree-role">C++ / CUGL · Cornell student team</p>
+  <a class="enter-zebra" href="https://github.com/caitlynjin/sweet-sweet-betrayal" target="_blank" rel="noopener noreferrer" aria-label="Explore the code (opens in a new tab)">Explore the code ↗</a>
+  <a class="next-project" href="#film-collection">More projects</a>
+ </aside>
+ <div class="zebra-sections betrayal-panel">
+  <div class="betrayal-frames" aria-label="Set traps, glide, collect treasure, and steal it back">
+   {studies.flatMap(study=>study.images).map(frame=><figure><img src={`/media/sweet-sweet-betrayal/${frame.image}.png`} alt={frame.alt} loading="lazy"/></figure>)}
+  </div>
+  <section class="betrayal-character-section" aria-labelledby="betrayal-characters-title">
+   <div><h3 id="betrayal-characters-title">Pick your partner in crime.</h3><p>Four sugar gliders. One treasure.</p></div>
+   <img class="betrayal-characters" src="/media/sweet-sweet-betrayal/characters.png" alt="Character selection: red, blue, yellow and green sugar gliders with distinct costumes" width="872" height="411" loading="lazy"/>
+  </section>
+ </div>
+</section>
+<style>
+/* A single desktop composition: the media grid and character strip share a height budget. */
+.betrayal-feature.aligned-zebra{border-top:1px solid #35432b;grid-template-columns:minmax(230px,.8fr) minmax(0,1.7fr);gap:5%;padding:28px 0;align-items:center}
+.betrayal-feature>.zebra-intro{position:static;padding:0;background:none;min-width:0}
+.betrayal-feature .intro-poster{display:block;width:min(100%,190px);margin:0 0 18px;max-height:none}
+.betrayal-feature .intro-poster img{display:block;width:100%;height:auto;max-height:none}
+.betrayal-feature .zebra-intro>.project-title{font:400 clamp(23px,2.2vw,32px)/1.13 Georgia,serif;text-transform:none;letter-spacing:-.02em;margin:12px 0}
+.betrayal-feature .zebra-logline{font:18px/1.5 Georgia,serif;max-width:270px;margin:0 0 14px}
+.betrayal-feature .sugarfree-role{margin:0;font-size:10px}
+.betrayal-feature .enter-zebra{margin:18px 0 0}
+.betrayal-feature .next-project{margin-top:14px}
+.betrayal-panel{display:grid;grid-template-rows:minmax(0,1fr) minmax(90px,.32fr);gap:16px;height:clamp(360px,calc(100svh - 190px),640px);padding:16px;min-width:0}
+.betrayal-frames{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;min-height:0}
+.betrayal-frames figure{margin:0;min-width:0;min-height:0;background:#080b09;display:flex;align-items:center;justify-content:center}
+.betrayal-frames img{display:block;width:100%;height:100%;object-fit:contain}
+.betrayal-character-section{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:center;min-height:0;border-top:1px solid #30382a;padding-top:12px}
+.betrayal-character-section h3{font:clamp(16px,1.7vw,22px)/1.25 Georgia,serif;color:#d6e5bb;margin:0 0 8px}
+.betrayal-character-section p{font:11px/1.6 Arial,sans-serif;color:#a5b297;margin:0}
+.betrayal-characters{display:block;width:100%;height:100%;min-height:0;object-fit:contain;object-position:right center}
+@media(min-width:901px) and (max-height:740px){.betrayal-feature .intro-poster{width:140px;margin-bottom:12px}.betrayal-feature .zebra-logline{font-size:16px}.betrayal-feature .zebra-intro>.project-title{font-size:25px}}
+@media(max-width:900px){.betrayal-feature.aligned-zebra{grid-template-columns:1fr;gap:24px;padding:32px 0}.betrayal-feature>.zebra-intro{display:grid;grid-template-columns:140px minmax(0,1fr);column-gap:22px;align-items:start}.betrayal-feature .intro-poster{grid-column:1;grid-row:1/7;width:100%;margin:0}.betrayal-feature .zebra-intro>:not(.intro-poster){grid-column:2}.betrayal-feature .zebra-intro>.project-title{font-size:26px}.betrayal-panel{height:auto;grid-template-rows:auto auto}.betrayal-frames img{height:auto}.betrayal-characters{height:auto;max-height:140px}}
+@media(max-width:500px){.betrayal-feature>.zebra-intro{grid-template-columns:90px minmax(0,1fr);column-gap:16px}.betrayal-feature .zebra-intro>.project-title{font-size:23px}.betrayal-feature .zebra-logline{font-size:16px}.betrayal-panel{padding:10px;gap:14px}.betrayal-frames{gap:8px}.betrayal-character-section{gap:12px}.betrayal-character-section h3{font-size:16px}}
+</style>
