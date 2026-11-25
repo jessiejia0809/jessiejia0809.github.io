@@ -42,8 +42,9 @@ body:has(.universe){background:#080a09;color:#d8d9cf}.universe~*{--rule:#282d27}
 .panel-scroll-hint{display:flex;justify-content:space-between;color:#a9b99a;font-size:10px;letter-spacing:.03em;border-bottom:1px solid #35432b;padding:0 0 13px;margin-bottom:22px}.project-scroll:focus-visible{outline:2px solid #a4b889;outline-offset:5px}.project-depth-content{padding-top:38px}.project-scroll .objects-note{margin-bottom:35px}@media(min-width:901px) and (min-height:650px){.aligned-zebra{padding:30px 0 40px;align-items:start;gap:6%}.aligned-zebra>.zebra-intro{position:static;padding-top:0}.aligned-zebra .intro-poster{max-width:250px;max-height:44svh;margin-bottom:16px}.aligned-zebra .intro-poster img{max-height:44svh;object-fit:contain;object-position:left}.aligned-zebra .zebra-logline{font-size:17px}.project-scroll{height:calc(100svh - 155px);min-height:480px;overflow-y:auto;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:#84986c #11180f;scrollbar-gutter:stable;padding-top:18px}.project-scroll .panel-scroll-hint{position:sticky;top:-18px;z-index:4;background:#0e140eee;padding-top:18px;margin-top:-18px;backdrop-filter:blur(10px)}.lou-feature-model{height:400px}.project-scroll .aligned-section{scroll-margin-top:65px}}@media(max-width:900px),(max-height:649px){.panel-scroll-hint{display:none}.project-scroll{height:auto;max-height:none;overflow:visible}.project-navigation{flex-wrap:wrap;gap:10px 18px}.project-navigation a:last-child{margin-left:auto}}
 
 /* Shared portfolio typography for the three featured projects. */
-.aligned-zebra .zebra-intro>h2{font:italic 64px/1.1 Georgia,serif;margin:16px 0;color:#dce3cf}
+.aligned-zebra .zebra-intro>.project-title{font:400 30px/1.25 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;margin:14px 0 18px;color:#dce3cf}
+.aligned-zebra .zebra-intro>.project-title span{display:inline-block;font:400 18px/1.3 Arial,sans-serif;letter-spacing:.08em;margin-left:12px;color:#a5af93}
 .aligned-zebra .zebra-intro>.tiny-label{color:#9ca38e}
 .aligned-zebra .zebra-intro>.enter-zebra,.aligned-zebra .zebra-intro>.next-project{font-size:11px;color:#aab998}
 .aligned-zebra .sugarfree-collaboration{color:#a5b297}
-@media(max-width:650px){.aligned-zebra .zebra-intro>h2{font-size:52px}}
+@media(max-width:650px){.aligned-zebra .zebra-intro>.project-title{font-size:26px}}
