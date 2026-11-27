@@ -1,0 +1,60 @@
+---
+import {filmography} from '../lib/content';
+const reels=[...filmography.reels].reverse();
+---
+<div class="reel-corner" data-preview-id={reels[0].videoId}>
+ <div class="reel-teaser"><div class="reel-teaser-video"></div><button class="reel-teaser-open" type="button" aria-label="Watch film reels"></button><button class="reel-dismiss" type="button" aria-label="Dismiss reel preview">×</button></div>
+ <button class="reel-launch" type="button" aria-label="Watch cinematography reels"><span class="reel-mini" aria-hidden="true"><img src={`https://i.ytimg.com/vi/${reels[0].videoId}/hqdefault.jpg`} alt=""/><span>▷</span></span><span class="reel-label"><strong>Watch reels</strong><small>Cinematography · 2026 / 2025</small></span><span class="reel-arrow" aria-hidden="true">↗</span></button>
+</div>
+<dialog class="reel-dialog" aria-label="Film reels">
+ <div class="reel-dialog-heading"><div class="reel-years" role="group" aria-label="Choose a reel">{reels.map((reel,i)=><button type="button" data-reel-id={reel.videoId} data-reel-title={reel.title} aria-pressed={i===0?'true':'false'}>{reel.title}</button>)}</div><button type="button" class="reel-close" aria-label="Close reel">Close ×</button></div>
+ <div class="reel-player"></div>
+</dialog>
+<style>
+ .reel-corner{--reel-width:352px;position:fixed;left:24px;bottom:calc(24px + env(safe-area-inset-bottom));z-index:21;width:258px;border:1px solid #a8b89545;border-radius:10px;background:#10160ff2;color:#e0e8d4;overflow:hidden;box-shadow:0 10px 36px #0006;backdrop-filter:blur(18px);transition:width .7s cubic-bezier(.22,1,.36,1),border-color .25s,box-shadow .25s}.reel-corner:hover{border-color:#a8b89588;box-shadow:0 12px 40px #0008}.reel-corner.is-preview{width:var(--reel-width)}.reel-teaser{position:relative;height:0;overflow:hidden;transition:height .7s cubic-bezier(.22,1,.36,1)}.is-preview .reel-teaser{height:198px}.reel-teaser-video{position:absolute;left:0;top:0;width:var(--reel-width);height:198px;background:#0b1009;opacity:0;transform:scale(.97);transition:opacity .22s ease,transform .7s cubic-bezier(.22,1,.36,1)}.is-preview .reel-teaser-video{opacity:1;transform:scale(1)}.reel-teaser-video :global(iframe){width:100%;height:100%;border:0;pointer-events:none}.reel-teaser-open{position:absolute;inset:0;border:0;background:transparent;cursor:pointer}.reel-dismiss{position:absolute;top:10px;right:10px;width:30px;height:30px;background:#0b1009b3;color:#e0e8d4;border:1px solid #ffffff30;border-radius:50%;font:20px Arial;cursor:pointer;opacity:0;transition:opacity .15s}.is-preview .reel-dismiss{opacity:1}.reel-launch{display:flex;align-items:center;gap:12px;width:100%;height:76px;padding:12px;background:transparent;border:0;color:inherit;text-align:left;cursor:pointer}.reel-mini{display:block;flex:none;position:relative;width:64px;height:46px;overflow:hidden;border-radius:3px;background:#222a1b}.reel-mini img{width:100%;height:100%;object-fit:cover;opacity:.65}.reel-mini>span{position:absolute;inset:0;display:grid;place-items:center;font:25px Arial,sans-serif;color:white}.reel-label{display:block;white-space:nowrap}.reel-label strong{display:block;font:17px/1.3 Georgia,serif;font-weight:400}.reel-label small{display:block;font:8px/1.6 Arial,sans-serif;letter-spacing:.025em;color:#a5b49a;margin-top:3px}.reel-arrow{margin-left:auto;color:#aabb98;font-size:18px}.reel-corner button:focus-visible,.reel-dialog button:focus-visible{outline:2px solid #d0dfbc;outline-offset:-4px}.reel-dialog{width:min(1000px,92vw);max-width:92vw;border:1px solid #566347;background:#10150e;color:#c6d0b9;padding:16px}.reel-dialog::backdrop{background:#030603e8}.reel-dialog-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;font:12px Arial,sans-serif;margin-bottom:12px}.reel-years{display:flex;gap:14px;flex-wrap:wrap}.reel-years button,.reel-close{border:0;background:none;color:#a0b08e;padding:8px;cursor:pointer;font:inherit}.reel-years button[aria-pressed=true]{color:#e0e8d4;text-decoration:underline;text-underline-offset:6px}.reel-close{white-space:nowrap}.reel-player{aspect-ratio:16/9}.reel-player :global(iframe){display:block;width:100%;height:100%;border:0}body:has(.reel-dialog[open]) .reel-corner{visibility:hidden}@media(max-width:650px){.reel-corner{--reel-width:min(320px,calc(100vw - 32px));left:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:240px}.is-preview .reel-teaser{height:180px}.reel-teaser-video{height:180px}.reel-launch{height:68px;gap:10px}.reel-mini{width:54px;height:40px}.reel-label strong{font-size:16px}.reel-dialog{padding:10px}.reel-dialog-heading{font-size:11px}.reel-years{gap:2px}}@media(prefers-reduced-motion:reduce){.reel-corner,.reel-teaser,.reel-teaser-video{transition:none}}
+</style>
+<script>
+ const corner=document.querySelector<HTMLElement>('.reel-corner')!;
+ const dialog=document.querySelector<HTMLDialogElement>('.reel-dialog')!;
+ const teaser=corner.querySelector<HTMLElement>('.reel-teaser-video')!;
+ const launch=corner.querySelector<HTMLButtonElement>('.reel-launch')!;
+ const choices=Array.from(dialog.querySelectorAll<HTMLButtonElement>('[data-reel-id]'));
+ let timer:ReturnType<typeof setTimeout>|undefined;
+ function collapse(){
+  clearTimeout(timer);
+  if(!corner.classList.contains('is-preview'))return;
+  corner.classList.remove('is-preview');
+  corner.querySelector<HTMLElement>('.reel-teaser')!.inert=true;
+  setTimeout(()=>teaser.replaceChildren(),reducedMotion.matches?0:750);
+  if(corner.querySelector('.reel-teaser')!.contains(document.activeElement))launch.focus();
+ }
+ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+ corner.querySelector<HTMLElement>('.reel-teaser')!.inert=true;
+ let seen=false;
+ try{seen=sessionStorage.getItem('portfolio-reel-preview-v2')==='seen';sessionStorage.setItem('portfolio-reel-preview-v2','seen');}catch{}
+ if(!seen&&!reducedMotion.matches&&window.scrollY<40){
+  corner.classList.add('is-preview');
+  corner.querySelector<HTMLElement>('.reel-teaser')!.inert=false;
+  const frame=document.createElement('iframe');
+  frame.src=`https://www.youtube-nocookie.com/embed/${corner.dataset.previewId}?autoplay=1&mute=1&playsinline=1&controls=0&disablekb=1&rel=0`;
+  frame.title='Muted film reel preview';frame.tabIndex=-1;frame.setAttribute('aria-hidden','true');frame.allow='autoplay; encrypted-media';frame.referrerPolicy='strict-origin-when-cross-origin';
+  frame.addEventListener('load',()=>{if(corner.classList.contains('is-preview')){clearTimeout(timer);timer=setTimeout(collapse,3000);}},{once:true});
+  teaser.append(frame);timer=setTimeout(collapse,6000);
+ }
+ document.addEventListener('scroll',collapse,{passive:true,capture:true});
+ reducedMotion.addEventListener('change',()=>{if(reducedMotion.matches)collapse();});
+ corner.querySelector('.reel-dismiss')!.addEventListener('click',collapse);
+ function play(button:HTMLButtonElement){
+  choices.forEach(choice=>choice.setAttribute('aria-pressed',String(choice===button)));
+  const iframe=document.createElement('iframe');
+  iframe.src=`https://www.youtube-nocookie.com/embed/${button.dataset.reelId}?autoplay=1&playsinline=1`;
+  iframe.title=button.dataset.reelTitle!;iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';iframe.allowFullscreen=true;iframe.referrerPolicy='strict-origin-when-cross-origin';
+  dialog.querySelector('.reel-player')!.replaceChildren(iframe);
+ }
+ function open(){collapse();play(choices[0]);dialog.showModal();}
+ launch.addEventListener('click',open);corner.querySelector('.reel-teaser-open')!.addEventListener('click',open);
+ choices.forEach(button=>button.addEventListener('click',()=>play(button)));
+ dialog.querySelector('.reel-close')!.addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+ dialog.addEventListener('close',()=>{dialog.querySelector('.reel-player')!.replaceChildren();launch.focus();});
+</script>

@@ -48,3 +48,7 @@ body:has(.universe){background:#080a09;color:#d8d9cf}.universe~*{--rule:#282d27}
 .aligned-zebra .zebra-intro>.enter-zebra,.aligned-zebra .zebra-intro>.next-project{font-size:11px;color:#aab998}
 .aligned-zebra .sugarfree-collaboration{color:#a5b297}
 @media(max-width:650px){.aligned-zebra .zebra-intro>.project-title{font-size:26px}}
+
+
+
+.zebra-intro .zebra-selection{display:block;width:fit-content;max-width:100%;margin:12px 0 0;padding:5px 9px;border-left:2px solid #a6b889;background:#a6b88912;color:#b8c6a9;font:10px/1.6 Arial,sans-serif;text-decoration:none}.zebra-selection span{margin-left:5px;color:#8e9f7d}.zebra-intro .zebra-selection:hover{background:#a6b88920;color:#d4dfc5}.zebra-selection:focus-visible{outline:2px solid #c3cea8;outline-offset:4px}
