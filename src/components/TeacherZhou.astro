@@ -1,0 +1,41 @@
+---
+const base='/film/lou/teacher-zhou/';
+---
+<section class="aligned-section zhou-study" id="teacher-zhou" aria-labelledby="zhou-title">
+ <header><h2 id="zhou-title">Character Profile: Teacher Zhou</h2></header>
+ <div class="zhou-layout">
+  <figure>
+   <button class="zhou-picture" type="button" aria-label="Show Teacher Zhou research photographs" aria-pressed="false">
+    <img class="zhou-portrait" src={base+'stage_01_master_portrait.jpg'} alt="Teacher Zhou in a blue cotton shirt" loading="lazy" width="1024" height="1024"/>
+    <span class="zhou-collage">
+     <img src={base+'research-portrait.jpg'} alt="Saved Teacher Zhou appearance reference: a young man beside a camera" loading="lazy" width="304" height="219"/>
+     <img src={base+'research-relationship.jpg'} alt="Saved Teacher Zhou and Zhang Qing reference: two people talking across a table" loading="lazy" width="318" height="218"/>
+     <img src={base+'research-city.jpg'} alt="Saved Teacher Zhou city reference: a small gathering around a table" loading="lazy" width="416" height="218"/>
+    </span>
+   </button>
+  </figure>
+  <div class="zhou-copy">
+   <p>Originally from Guangzhou, Zhou was sent to Meixian in 1974 at the age of nineteen as part of the Down to the Countryside Movement (上山下乡). With his education and love of literature, he begins teaching at the local production brigade’s night school (夜校). By the summer of 1979, he is twenty-four and preparing for the national university entrance examination (高考), whose reinstatement in 1977 has opened up the possibility of returning to the city to pursue higher education.</p>
+   <p>To Zhang Qing, Zhou embodies a different way of living and thinking. Free-spirited, intellectually talented, and charismatic, he represents a world beyond the confines of the weilongwu (hakka traditional building). Drawn to his intellect and ideas, she projects onto him her own longing for freedom and love.</p>
+   <p class="zhou-research"><span>Character references</span><em>A City of Sadness</em> (for appearances); <em>My Brilliant Friend</em> (Nino).</p>
+  </div>
+ </div>
+</section>
+<style>
+ .zhou-study{margin-top:28px;color:#b8c5aa;font:12px/1.7 Arial,sans-serif}.zhou-study header h2 span{font-size:15px;color:#9eac8e;margin-left:8px}.zhou-layout{display:grid;grid-template-columns:minmax(130px,200px) minmax(0,1fr);gap:18px;align-items:start}.zhou-layout figure{margin:0;min-width:0}.zhou-picture{display:block;position:relative;width:100%;padding:0;border:0;background:#171c14;cursor:pointer;overflow:hidden}.zhou-portrait{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover}.zhou-collage{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1.25fr 1fr;gap:4px;padding:4px;background:#11170e;opacity:0;transition:opacity .2s}.zhou-collage img{display:block;width:100%;height:100%;object-fit:contain;min-height:0;min-width:0;background:#090d08}.zhou-collage img:first-child{grid-column:1/-1}.zhou-picture[aria-pressed=true] .zhou-collage{opacity:1}.zhou-picture:focus-visible,.zhou-source:focus-visible{outline:2px solid #c5d3b2;outline-offset:4px}.zhou-layout figcaption{font:9px/1.6 Arial,sans-serif;color:#93a286;margin-top:8px}.zhou-layout figcaption span{display:block;color:#b6c2a7}.zhou-copy p{margin:0 0 13px}.zhou-copy .zhou-lead{font:italic 20px/1.35 Georgia,serif;color:#dce4d1;margin-bottom:16px}.zhou-copy .zhou-research{font-size:11px;border-top:1px solid #33402b;padding-top:12px;margin-bottom:9px}.zhou-research span{display:block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#90a080;margin-bottom:5px}.zhou-source{font-size:9px;color:#9eaf8d;text-decoration:underline;text-underline-offset:3px}@media(hover:hover){.zhou-picture:hover .zhou-collage{opacity:1}}@media(max-width:520px){.zhou-layout{grid-template-columns:120px minmax(0,1fr);gap:14px}.zhou-study{font-size:11px}.zhou-copy .zhou-research{font-size:10px}}@media(prefers-reduced-motion:reduce){.zhou-collage{transition:none}}
+</style>
+<script>
+ document.querySelectorAll<HTMLButtonElement>('.zhou-picture').forEach(button=>{
+  button.addEventListener('click',()=>{
+   const show=button.getAttribute('aria-pressed')!=='true';
+   button.setAttribute('aria-pressed',String(show));
+   button.setAttribute('aria-label',show?'Show Teacher Zhou portrait':'Show Teacher Zhou research photographs');
+  });
+  button.addEventListener('keydown',event=>{
+   if(event.key==='Escape'){
+    button.setAttribute('aria-pressed','false');
+    button.setAttribute('aria-label','Show Teacher Zhou research photographs');
+   }
+  });
+ });
+</script>
